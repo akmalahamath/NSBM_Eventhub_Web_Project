@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Events — NSBM Event Hub</title>
+    <meta name="description" content="Search, filter, and discover all academic, sports, cultural, and technology events happening at NSBM Green University.">
+    <link rel="stylesheet" href="css/style.css?v=2.1">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Sticky Glass Navigation Bar -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="navbar-brand">
+                    <img src="images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text">NSBM <span>EventHub</span></div>
+                </a>
+
+                <ul class="navbar-nav">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="events.html" class="nav-link active">Events</a></li>
+                    <li><a href="categories.html" class="nav-link">Categories</a></li>
+                    <li><a href="announcements.html" class="nav-link">Announcements</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <div id="navAuthActions" style="display: flex; gap: 0.75rem;">
+                        <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+                    </div>
+                    <button class="nav-hamburger" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section-py" style="padding-top: 3.5rem;">
+        <div class="container">
+            <div class="section-header" style="text-align: left; max-width: 100%; margin-bottom: 2rem;">
+                <span class="section-tag">Event Directory</span>
+                <h1 class="section-title">Discover University Events</h1>
+                <p class="section-subtitle">Search, filter, and reserve your attendance for official NSBM summits, workshops, and competitions.</p>
+            </div>
+
+            <!-- Multi-Filter & Search Bar Panel -->
+            <div class="glass-panel" style="margin-bottom: 2.5rem; padding: 1.5rem;">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 1rem; align-items: flex-end;" class="grid-filters">
+                    <div>
+                        <label class="form-label" for="eventSearchInput"><i class="bi bi-search"></i> Search Events</label>
+                        <input type="text" id="eventSearchInput" class="form-control" placeholder="Search by title, venue, or organizer...">
+                    </div>
+
+                    <div>
+                        <label class="form-label" for="eventCategoryFilter"><i class="bi bi-tag"></i> Category</label>
+                        <select id="eventCategoryFilter" class="form-select">
+                            <option value="0">All Categories</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="form-label" for="eventStatusFilter"><i class="bi bi-activity"></i> Status</label>
+                        <select id="eventStatusFilter" class="form-select">
+                            <option value="all">All Statuses</option>
+                            <option value="upcoming" selected>Upcoming</option>
+                            <option value="ongoing">Ongoing</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="form-label" for="eventTimeFilter"><i class="bi bi-calendar3"></i> Timeframe</label>
+                        <select id="eventTimeFilter" class="form-select">
+                            <option value="all">All Dates</option>
+                            <option value="upcoming" selected>Upcoming</option>
+                            <option value="today">Today</option>
+                            <option value="this_week">This Week</option>
+                            <option value="this_month">This Month</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="form-label" for="eventSortFilter"><i class="bi bi-sort-down"></i> Sort By</label>
+                        <select id="eventSortFilter" class="form-select">
+                            <option value="date_asc">Date: Nearest First</option>
+                            <option value="date_desc">Date: Latest First</option>
+                            <option value="popular">Most Popular</option>
+                            <option value="title_asc">Title (A-Z)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-glass);">
+                    <span id="eventsCountDisplay" class="text-secondary" style="font-size: 0.85rem; font-weight: 600;">
+                        Loading events...
+                    </span>
+                    <button onclick="resetEventFilters()" class="btn btn-secondary btn-sm">
+                        <i class="bi bi-arrow-counterclockwise"></i> Reset Filters
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dynamic Events Grid -->
+            <div id="eventsDirectoryGrid" class="grid-3">
+                <!-- Populated via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <div>&copy; 2026 NSBM Event Hub. All Rights Reserved.</div>
+                <a href="index.html">Back to Home</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/registration.js"></script>
+    <script src="js/qrcode.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initEventsDirectory();
+        });
+    </script>
+</body>
+</html>
