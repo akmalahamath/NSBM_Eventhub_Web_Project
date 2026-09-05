@@ -120,6 +120,314 @@
     --shadow-glow-gold: 0 10px 25px -4px rgba(217, 119, 6, 0.28), 0 0 15px rgba(251, 176, 45, 0.18);
     --shadow-glow-emerald: 0 12px 30px -5px rgba(45, 106, 79, 0.18);
 }
+/* RESET & BASE TYPOGRAPHY */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Apple-Style Top Scroll Progress Bar */
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3.5px;
+    background: linear-gradient(90deg, #52B788 0%, #FBB02D 50%, #F59E0B 100%);
+    box-shadow: 0 0 12px rgba(251, 176, 45, 0.6);
+    z-index: 99999;
+    pointer-events: none;
+    transition: width 0.08s linear;
+}
+
+/* Custom Luxury Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #081C15;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1B4332;
+    border-radius: 9999px;
+    border: 2px solid #081C15;
+    transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2D6A4F;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    line-height: 1.65;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image:
+        radial-gradient(circle at 12% 10%, rgba(45, 106, 79, 0.25) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(251, 176, 45, 0.14) 0%, transparent 40%),
+        radial-gradient(circle at 50% 75%, rgba(27, 67, 50, 0.32) 0%, transparent 50%);
+    background-attachment: fixed;
+    transition: background-color var(--transition-smooth), color var(--transition-smooth);
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.22;
+    letter-spacing: -0.025em;
+}
+
+h1 {
+    font-size: clamp(2.3rem, 5.2vw, 4rem);
+    font-weight: 800;
+}
+
+h2 {
+    font-size: clamp(1.85rem, 3.8vw, 2.65rem);
+    font-weight: 750;
+}
+
+h3 {
+    font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+h6 {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+a:hover {
+    color: #FDE68A;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Helper Utilities */
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+.text-white {
+    color: #FFFFFF !important;
+}
+
+.text-gold {
+    color: #FBB02D !important;
+}
+
+.text-emerald {
+    color: #52B788 !important;
+}
+
+.text-danger {
+    color: var(--danger) !important;
+}
+
+.text-success {
+    color: var(--success) !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.font-bold {
+    font-weight: 700 !important;
+}
+
+.font-mono {
+    font-family: monospace, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+}
+
+/*LAYOUT CONTAINERS & GRIDS*/
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.75rem;
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 0 1.75rem;
+}
+
+.section-py {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+    position: relative;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 3.5rem;
+}
+
+.section-tag {
+    display: inline-block;
+    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 0 !important;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary) !important;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 0.85rem;
+    box-shadow: none !important;
+}
+
+.section-tag i {
+    display: none !important;
+}
+
+.section-title {
+    margin-bottom: 1rem;
+}
+
+/* Specific targeted size for Page Header Banner Titles (matching Why NSBM Event Hub? h2 text size) */
+.section-header h1,
+.section-header .section-title {
+    font-size: clamp(1.85rem, 3.8vw, 2.65rem);
+    font-weight: 750;
+}
+
+.section-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* About Page Hero Banner & Standalone Logo */
+.about-hero-banner {
+    margin-bottom: 2.5rem;
+    padding: 2.25rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-cta-banner {
+    margin-bottom: 2.5rem;
+    padding: 2.5rem 1.75rem;
+    background: linear-gradient(135deg, rgba(27, 67, 50, 0.6) 0%, rgba(18, 48, 36, 0.8) 100%);
+    border: 1px solid var(--border-glass-gold);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-glass);
+}
+
+[data-theme="light"] .about-cta-banner {
+    background: #FFFFFF !important;
+    border: 1px solid rgba(27, 67, 50, 0.12) !important;
+    box-shadow: 0 10px 30px rgba(8, 28, 21, 0.06) !important;
+}
+
+.about-hero-logo-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-hero-logo-img {
+    height: 175px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    padding: 0.5rem;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.35));
+    transition: transform var(--transition-base);
+}
+
+.about-hero-logo-img:hover {
+    transform: scale(1.05);
+}
+
+[data-theme="light"] .about-hero-logo-img {
+    filter: drop-shadow(0 4px 12px rgba(8, 28, 21, 0.15));
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.75rem;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.25rem;
+}
+
 /* GLASSMORPHISM PANELS & CARDS */
 .glass-card {
     background: var(--bg-surface-card);
