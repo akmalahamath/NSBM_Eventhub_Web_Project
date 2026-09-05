@@ -1,11 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Announcements & Notices — NSBM Event Hub</title>
+    <link rel="stylesheet" href="css/style.css?v=2.1">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-    
-</body>
-</html>
+
+    <!-- Sticky Glass Navigation Bar -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="navbar-brand">
+                    <img src="images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text">NSBM <span>EventHub</span></div>
+                </a>
+
+                <ul class="navbar-nav">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="events.html" class="nav-link">Events</a></li>
+                    <li><a href="categories.html" class="nav-link">Categories</a></li>
+                    <li><a href="announcements.html" class="nav-link active">Announcements</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <div id="navAuthActions" style="display: flex; gap: 0.75rem;">
+                        <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+                    </div>
+                    <button class="nav-hamburger" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section-py" style="padding-top: 3.5rem;">
+        <div class="container">
+            <div class="section-header" style="text-align: left; max-width: 100%; margin-bottom: 2rem;">
+                <span class="section-tag">Official Notices</span>
+                <h1 class="section-title">University Announcements</h1>
+                <p class="section-subtitle">Stay informed on venue updates, schedule changes, team registration deadlines, and volunteer opportunities.</p>
+            </div>
+
+            <!-- Search & Filter Bar -->
+            <div class="glass-panel" style="margin-bottom: 2rem; padding: 1.25rem;">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;" class="grid-filters">
+                    <div>
+                        <input type="text" id="announcementSearchInput" class="form-control" placeholder="Search notices by keyword...">
+                    </div>
+                    <div>
+                        <select id="announcementPriorityFilter" class="form-select">
+                            <option value="all">All Priorities</option>
+                            <option value="urgent">Urgent</option>
+                            <option value="high">High Priority</option>
+                            <option value="medium">Medium Priority</option>
+                            <option value="low">General / Low</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="announcementsList" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <!-- Loaded dynamically via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <div>&copy; 2026 NSBM Event Hub. All Rights Reserved.</div>
+                <a href="events.html">Browse Events</a>
+            </div>
+        </div>
+    </footer>
