@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details — NSBM Event Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Sticky Glass Navigation Bar -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="navbar-brand">
+                    <img src="images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text">NSBM <span>EventHub</span></div>
+                </a>
+
+                <ul class="navbar-nav">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="events.html" class="nav-link active">Events</a></li>
+                    <li><a href="categories.html" class="nav-link">Categories</a></li>
+                    <li><a href="announcements.html" class="nav-link">Announcements</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <div id="navAuthActions" style="display: flex; gap: 0.75rem;">
+                        <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+                    </div>
+                    <button class="nav-hamburger" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main id="eventDetailsContainer" class="section-py" style="padding-top: 2.5rem;">
+        <div class="container">
+            <!-- Breadcrumb Navigation -->
+            <div style="margin-bottom: 1.5rem; font-size: 0.9rem;">
+                <a href="events.html" class="text-secondary"><i class="bi bi-arrow-left"></i> Back to Events</a>
+            </div>
+
+            <!-- Event Hero Banner -->
+            <div class="glass-panel" style="padding: 0; overflow: hidden; margin-bottom: 2.5rem; position: relative; border-color: var(--border-glass-gold);">
+                <div style="position: relative; width: 100%; height: 380px; background: #081C15;">
+                    <img id="eventBannerImg" src="" alt="Event Banner" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,28,21,0.95) 0%, rgba(8,28,21,0.4) 60%, transparent 100%);"></div>
+                    
+                    <div style="position: absolute; bottom: 2rem; left: 2rem; right: 2rem;">
+                        <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.75rem;">
+                            <span id="eventCategory" class="badge" style="background: rgba(8, 28, 21, 0.85); backdrop-filter: blur(12px); border: 1px solid var(--border-glass-gold); color: #FBB02D; padding: 0.45rem 1.1rem; border-radius: 9999px; font-size: 0.85rem; font-weight: 700;"></span>
+                            <span id="eventStatus" class="event-badge-status status-upcoming" style="position: static;"></span>
+                        </div>
+                        <h1 id="eventTitle" style="font-size: clamp(1.8rem, 3.5vw, 2.8rem); line-height: 1.2; text-shadow: 0 4px 20px rgba(0,0,0,0.6);"></h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Grid (Details & Sidebar) -->
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2.5rem;" class="grid-details-layout">
+                
+                <!-- Left Column: Description & Program -->
+                <div>
+                    <div class="glass-card" style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1.25rem;"><i class="bi bi-info-circle text-primary"></i> About This Event</h3>
+                        <p id="eventDescription" style="font-size: 1.05rem; line-height: 1.8; color: var(--text-primary); white-space: pre-line;"></p>
+                    </div>
+
+                    <!-- Live Event Countdown Panel -->
+                    <div class="glass-card text-center" style="margin-bottom: 2rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--primary);"><i class="bi bi-stopwatch"></i> Event Starts In</h4>
+                        <div id="eventDetailsCountdown" class="countdown-box" style="margin-top: 1rem;"></div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Registration Card & Logistics Meta -->
+                <div>
+                    <!-- Registration Card -->
+                    <div class="glass-panel" id="register" style="margin-bottom: 2rem; border-color: var(--border-glass-gold); box-shadow: var(--shadow-glow-emerald);">
+                        <h3 style="font-size: 1.3rem; margin-bottom: 1.25rem;"><i class="bi bi-ticket-perforated text-primary"></i> Event Pass</h3>
+
+                        <!-- Live Seat Capacity Progress -->
+                        <div style="margin-bottom: 1.5rem;">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 0.4rem;">
+                                <span>Seat Capacity</span>
+                                <span id="eventCapacityText" class="text-primary"></span>
+                            </div>
+                            <div class="capacity-bar" style="height: 10px;">
+                                <div id="eventCapacityProgressBar" class="capacity-progress" style="width: 0%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Box -->
+                        <div id="eventRegistrationCTA">
+                            <!-- Populated via JavaScript -->
+                        </div>
+
+                        <div style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 1rem;">
+                            <i class="bi bi-shield-lock"></i> Free for all NSBM undergraduate & postgraduate students.
+                        </div>
+                    </div>
+
+                    <!-- Logistics Meta Info Card -->
+                    <div class="glass-card">
+                        <h4 style="margin-bottom: 1.25rem; font-size: 1.1rem;"><i class="bi bi-geo-alt text-primary"></i> Event Schedule & Location</h4>
+                        
+                        <div class="event-meta-info" style="gap: 1rem; font-size: 0.95rem;">
+                            <div class="event-meta-item">
+                                <i class="bi bi-calendar-event"></i>
+                                <div>
+                                    <div class="text-muted" style="font-size: 0.75rem; text-transform: uppercase;">Date</div>
+                                    <strong id="eventDate"></strong>
+                                </div>
+                            </div>
+
+                            <div class="event-meta-item">
+                                <i class="bi bi-clock"></i>
+                                <div>
+                                    <div class="text-muted" style="font-size: 0.75rem; text-transform: uppercase;">Time</div>
+                                    <strong id="eventTime"></strong>
+                                </div>
+                            </div>
+
+                            <div class="event-meta-item">
+                                <i class="bi bi-building"></i>
+                                <div>
+                                    <div class="text-muted" style="font-size: 0.75rem; text-transform: uppercase;">Venue</div>
+                                    <strong id="eventVenue"></strong>
+                                </div>
+                            </div>
+
+                            <div class="event-meta-item">
+                                <i class="bi bi-person-badge"></i>
+                                <div>
+                                    <div class="text-muted" style="font-size: 0.75rem; text-transform: uppercase;">Organizer</div>
+                                    <strong id="eventOrganizer"></strong>
+                                </div>
+                            </div>
+
+                            <div class="event-meta-item">
+                                <i class="bi bi-hourglass-split"></i>
+                                <div>
+                                    <div class="text-muted" style="font-size: 0.75rem; text-transform: uppercase;">Registration Closes</div>
+                                    <strong id="eventDeadline" class="text-warning"></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <div>&copy; 2026 NSBM Event Hub. All Rights Reserved.</div>
+                <a href="events.html">Back to Events Directory</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/registration.js"></script>
+    <script src="js/qrcode.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSingleEventDetails();
+        });
+    </script>
+</body>
+</html>
