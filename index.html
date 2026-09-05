@@ -48,353 +48,448 @@
     </header>
 
     /* Hero Section*/
-     <section class="hero-section">
-            <div class="hero-glow-blob amber"></div>
-            <div class="hero-glow-blob green"></div>
+    <section class="hero-section">
+        <div class="hero-glow-blob amber"></div>
+        <div class="hero-glow-blob green"></div>
 
-            <div class="container">
-                <p class="hero-eyebrow-text animate-fade-in" style="font-size: 1.15rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary); margin-bottom: 1.25rem; display: inline-block;">
-                    NSBM Green University
-                </p>
+        <div class="container">
+            <p class="hero-eyebrow-text animate-fade-in"
+                style="font-size: 1.15rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary); margin-bottom: 1.25rem; display: inline-block;">
+                NSBM Green University
+            </p>
 
-                <h1 class="hero-title animate-fade-up">
-                    Where Campus Life Meets <span>Unforgettable Experiences</span>
-                </h1>
+            <h1 class="hero-title animate-fade-up">
+                Where Campus Life Meets <span>Unforgettable Experiences</span>
+            </h1>
 
-                <p class="hero-subtitle animate-fade-up">
-                    Discover, register, and engage with premier hackathons, career summits, sports tournaments, and cultural nights across NSBM Green University.
-                </p>
+            <p class="hero-subtitle animate-fade-up">
+                Discover, register, and engage with premier hackathons, career summits, sports tournaments, and cultural
+                nights across NSBM Green University.
+            </p>
 
-                <div class="hero-cta animate-fade-up">
-                    <a href="events.html" class="btn btn-primary btn-lg btn-pill">
-                        <i class="bi bi-compass"></i> Explore All Events
-                    </a>
-                    <a href="register.html" class="btn btn-secondary btn-lg btn-pill">
-                        <i class="bi bi-person-plus"></i> Join as Student
-                    </a>
-                </div>
-
-                <!-- Next Upcoming Event Live Countdown Box -->
-                <div class="animate-fade-up" style="margin-top: 1.5rem;">
-                    <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); margin-bottom: 0.75rem;">
-                        <i class="bi bi-stopwatch"></i> Next Event Countdown: <span id="homeNextEventTitle" class="text-primary">NSBM Hackfest 2026</span>
-                    </div>
-                    <div id="homeNextEventCountdown" class="countdown-box">
-                        <!-- Loaded dynamically via JavaScript -->
-                    </div>
-                </div>
+            <div class="hero-cta animate-fade-up">
+                <a href="events.html" class="btn btn-primary btn-lg btn-pill">
+                    <i class="bi bi-compass"></i> Explore All Events
+                </a>
+                <a href="register.html" class="btn btn-secondary btn-lg btn-pill">
+                    <i class="bi bi-person-plus"></i> Join as Student
+                </a>
             </div>
-        </section>
 
-        /* Dynamic Statistics Counters */
-        <section class="section-py" style="padding-top: 2rem; padding-bottom: 3rem;">
-            <div class="container">
-                <div class="grid-4">
-                    <div class="stat-card">
-                        <div class="stat-icon-wrapper blue">
-                            <i class="bi bi-calendar4-event"></i>
-                        </div>
-                        <div>
-                            <div class="stat-number" data-target="50" data-suffix="+">50+</div>
-                            <div class="stat-label">Annual Campus Events</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon-wrapper green">
-                            <i class="bi bi-people"></i>
-                        </div>
-                        <div>
-                            <div class="stat-number" data-target="12000" data-suffix="+">12,000+</div>
-                            <div class="stat-label">Active Undergraduates</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon-wrapper purple">
-                            <i class="bi bi-award"></i>
-                        </div>
-                        <div>
-                            <div class="stat-number" data-target="30" data-suffix="+">30+</div>
-                            <div class="stat-label">Student Societies</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-card">
-                        <div class="stat-icon-wrapper orange">
-                            <i class="bi bi-shield-check"></i>
-                        </div>
-                        <div>
-                            <div class="stat-number" data-target="100" data-suffix="%">100%</div>
-                            <div class="stat-label">Verified Digital Passes</div>
-                        </div>
-                    </div>
+            <!-- Next Upcoming Event Live Countdown Box -->
+            <div class="animate-fade-up" style="margin-top: 1.5rem;">
+                <div
+                    style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); margin-bottom: 0.75rem;">
+                    <i class="bi bi-stopwatch"></i> Next Event Countdown: <span id="homeNextEventTitle"
+                        class="text-primary">NSBM Hackfest 2026</span>
                 </div>
-            </div>
-        </section>
-
-        /* Featured Events Section */
-        <section class="section-py">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Upcoming Highlights</span>
-                    <h2 class="section-title">Premier University Events</h2>
-                    <p class="section-subtitle">Reserve your seat for upcoming guest lectures, technological hackathons, and cultural summits.</p>
-                </div>
-
-                <div id="featuredEventsGrid" class="grid-3">
+                <div id="homeNextEventCountdown" class="countdown-box">
                     <!-- Loaded dynamically via JavaScript -->
                 </div>
-
-                <div class="text-center" style="margin-top: 3.5rem;">
-                    <a href="events.html" class="btn btn-secondary btn-lg btn-pill">
-                        Explore Full Event Directory <i class="bi bi-arrow-right"></i>
-                    </a>
-                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        /* Apple-Style Sticky Storytelling Section */
-        <section class="story-section">
-            <div class="container">
-                <div class="section-header text-center" style="margin-bottom: 3.5rem;">
-                    <span class="section-tag">Interactive Journey</span>
-                    <h2 class="section-title">The Frictionless Campus Experience</h2>
-                    <p class="section-subtitle">How NSBM Event Hub transforms university engagement into an effortless digital journey.</p>
-                </div>
-
-                <div class="story-grid">
-                    <!-- Left: Pinned 3D Device Showcase Canvas -->
-                    <div class="story-sticky-pane">
-                        <div class="story-device-canvas">
-                            <!-- Stage 1: Discovery & Real-Time Seat Matrix -->
-                            <div class="story-stage-view active" id="stagePreview1">
-                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
-                                    <span class="badge" style="background: rgba(251,176,45,0.2); color:#FBB02D; border:1px solid rgba(251,176,45,0.4);">
-                                        <i class="bi bi-compass"></i> Step 1 &bull; Discovery
-                                    </span>
-                                    <span class="text-secondary" style="font-size:0.8rem;"><i class="bi bi-broadcast text-danger"></i> Live Matrix</span>
-                                </div>
-                                <h4 style="font-size:1.2rem; margin-bottom:0.6rem;">NSBM National Hackfest 2026</h4>
-                                <div class="event-meta-item" style="font-size:0.85rem; margin-bottom:1rem;">
-                                    <i class="bi bi-geo-alt text-primary"></i> Computing Faculty Auditorium
-                                </div>
-                                <div class="capacity-container" style="margin-bottom:1.25rem;">
-                                    <div class="capacity-header">
-                                        <span class="text-secondary">Seats Available</span>
-                                        <span class="text-primary font-bold">142 / 200 (71%)</span>
-                                    </div>
-                                    <div class="capacity-bar">
-                                        <div class="capacity-progress" style="width: 71%;"></div>
-                                    </div>
-                                </div>
-                                <div style="background:rgba(8,28,21,0.6); padding:0.9rem; border-radius:var(--radius-md); border:1px solid var(--border-glass); display:flex; justify-content:space-between; align-items:center;">
-                                    <span style="font-size:0.85rem; color:var(--text-secondary);"><i class="bi bi-tag"></i> Computing &amp; AI</span>
-                                    <span class="btn btn-primary btn-sm btn-pill" style="padding:0.35rem 0.85rem; font-size:0.8rem;">Select Event</span>
-                                </div>
-                            </div>
-
-                            <!-- Stage 2: Instant Verified Digital Ticket Pass -->
-                            <div class="story-stage-view" id="stagePreview2">
-                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
-                                    <span class="badge" style="background: rgba(82,183,136,0.2); color:#52B788; border:1px solid rgba(82,183,136,0.4);">
-                                        <i class="bi bi-shield-check"></i> Step 2 &bull; Pass Issued
-                                    </span>
-                                    <span class="text-primary font-bold" style="font-size:0.8rem;">PASS #88492</span>
-                                </div>
-                                <div class="ticket-card" style="padding:1.5rem; border-radius:var(--radius-md); text-align:center;">
-                                    <div class="ticket-header-logo" style="margin-bottom:0.5rem; font-size:1.05rem;">
-                                        <i class="bi bi-stars"></i> NSBM OFFICIAL PASS
-                                    </div>
-                                    <h4 style="font-size:1.15rem; margin-bottom:0.25rem;">Verified Undergraduate</h4>
-                                    <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.75rem;">Faculty of Computing &bull; ID: 22.1/NSBM/0842</div>
-                                    <div class="ticket-code-text" style="font-size:0.95rem; padding:0.35rem 1rem;">
-                                        TKT-HACKFEST-2026
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Stage 3: High-Density QR Laser Validation -->
-                            <div class="story-stage-view" id="stagePreview3" style="position:relative;">
-                                <div class="laser-scanner-line"></div>
-                                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-                                    <span class="badge" style="background: rgba(56,189,248,0.2); color:#38BDF8; border:1px solid rgba(56,189,248,0.4);">
-                                        <i class="bi bi-qr-code-scan"></i> Step 3 &bull; Gate Validation
-                                    </span>
-                                    <span class="text-success font-bold" style="font-size:0.82rem;"><i class="bi bi-check-circle-fill"></i> Access Granted</span>
-                                </div>
-                                <div class="ticket-qr-box" style="width:140px; height:140px; margin:0.75rem auto 1rem;">
-                                    <i class="bi bi-qr-code text-primary" style="font-size:4.5rem;"></i>
-                                </div>
-                                <div class="text-center">
-                                    <div style="font-size:0.92rem; font-weight:800; color:var(--success); margin-bottom:0.2rem;">
-                                        <i class="bi bi-shield-fill-check"></i> Verified at Turnstile Gate #02
-                                    </div>
-                                    <div style="font-size:0.78rem; color:var(--text-muted);">Real-time attendance synchronized with database</div>
-                                </div>
-                            </div>
-                        </div>
+    /* Dynamic Statistics Counters */
+    <section class="section-py" style="padding-top: 2rem; padding-bottom: 3rem;">
+        <div class="container">
+            <div class="grid-4">
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper blue">
+                        <i class="bi bi-calendar4-event"></i>
                     </div>
-
-                    <!-- Right: Progressive Story Step Narrative Cards -->
-                    <div class="story-step-cards">
-                        <div class="story-step-card is-active" data-step="0">
-                            <div class="step-indicator-wrapper">
-                                <div class="step-number-badge">01</div>
-                                <h3 style="font-size:1.35rem; margin-bottom:0;">Discover &amp; Filter in Seconds</h3>
-                            </div>
-                            <p class="text-secondary" style="font-size:1rem; line-height:1.65; margin-bottom:0;">
-                                Search across faculties, live seat capacities, and calendar schedules. Filter by Computing, Engineering, Business, or Cultural clubs with instant zero-reload responsive feedback.
-                            </p>
-                        </div>
-
-                        <div class="story-step-card" data-step="1">
-                            <div class="step-indicator-wrapper">
-                                <div class="step-number-badge">02</div>
-                                <h3 style="font-size:1.35rem; margin-bottom:0;">1-Click Instant Digital Reservation</h3>
-                            </div>
-                            <p class="text-secondary" style="font-size:1rem; line-height:1.65; margin-bottom:0;">
-                                Reserve your confirmed university seat in under 3 seconds. The system immediately binds your student credentials, generates an official verifiable pass number, and stores it in your dashboard.
-                            </p>
-                        </div>
-
-                        <div class="story-step-card" data-step="2">
-                            <div class="step-indicator-wrapper">
-                                <div class="step-number-badge">03</div>
-                                <h3 style="font-size:1.35rem; margin-bottom:0;">Frictionless QR Check-In at Venue</h3>
-                            </div>
-                            <p class="text-secondary" style="font-size:1rem; line-height:1.65; margin-bottom:0;">
-                                Present your digital QR ticket at auditorium turnstiles or society check-in desks. High-speed laser scanning validates attendance in real-time without paper queues.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        /* Campus life Horizonatal Showcase */
-        <section class="horizontal-gallery-section">
-            <div class="container">
-                <div class="horizontal-gallery-header">
                     <div>
-                        <span class="section-tag">Campus Highlights</span>
-                        <h2 class="section-title">Life at Green University Town</h2>
-                        <p class="section-subtitle">Experience academic excellence, technological innovation, and vibrant cultural celebrations.</p>
-                    </div>
-                    <div class="horizontal-nav-controls">
-                        <button class="horizontal-nav-btn prev" aria-label="Previous"><i class="bi bi-chevron-left"></i></button>
-                        <button class="horizontal-nav-btn next" aria-label="Next"><i class="bi bi-chevron-right"></i></button>
+                        <div class="stat-number" data-target="50" data-suffix="+">50+</div>
+                        <div class="stat-label">Annual Campus Events</div>
                     </div>
                 </div>
 
-                <div class="horizontal-scroll-track">
-                    <div class="horizontal-card">
-                        <div style="height:200px; background:linear-gradient(135deg,#081C15,#1B4332); display:flex; align-items:center; justify-content:center;">
-                            <i class="bi bi-laptop text-primary" style="font-size:4rem;"></i>
-                        </div>
-                        <div class="horizontal-card-body">
-                            <span class="badge" style="background:rgba(251,176,45,0.2); color:#FBB02D; border:1px solid rgba(251,176,45,0.4); margin-bottom:0.75rem; width:fit-content;">Computing Faculty</span>
-                            <h4 style="font-size:1.15rem; margin-bottom:0.4rem;">National Hackfest &amp; AI Expo</h4>
-                            <p class="text-secondary" style="font-size:0.88rem; line-height:1.55; margin-bottom:1rem;">24-hour non-stop algorithmic problem solving, machine learning showcases, and industry venture pitches.</p>
-                            <a href="events.html?category=1" class="text-primary font-bold" style="margin-top:auto; font-size:0.9rem;">Explore Tech Events <i class="bi bi-arrow-right"></i></a>
-                        </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper green">
+                        <i class="bi bi-people"></i>
                     </div>
-
-                    <div class="horizontal-card">
-                        <div style="height:200px; background:linear-gradient(135deg,#1B4332,#2D6A4F); display:flex; align-items:center; justify-content:center;">
-                            <i class="bi bi-trophy text-success" style="font-size:4rem;"></i>
-                        </div>
-                        <div class="horizontal-card-body">
-                            <span class="badge" style="background:rgba(82,183,136,0.2); color:#52B788; border:1px solid rgba(82,183,136,0.4); margin-bottom:0.75rem; width:fit-content;">Athletics &amp; Sports</span>
-                            <h4 style="font-size:1.15rem; margin-bottom:0.4rem;">Inter-Faculty Championship Gala</h4>
-                            <p class="text-secondary" style="font-size:0.88rem; line-height:1.55; margin-bottom:1rem;">Cricket, swimming, rugby, and badminton tournaments hosted on world-class university sports grounds.</p>
-                            <a href="events.html?category=2" class="text-primary font-bold" style="margin-top:auto; font-size:0.9rem;">Explore Sports <i class="bi bi-arrow-right"></i></a>
-                        </div>
+                    <div>
+                        <div class="stat-number" data-target="12000" data-suffix="+">12,000+</div>
+                        <div class="stat-label">Active Undergraduates</div>
                     </div>
+                </div>
 
-                    <div class="horizontal-card">
-                        <div style="height:200px; background:linear-gradient(135deg,#1B4322,#386641); display:flex; align-items:center; justify-content:center;">
-                            <i class="bi bi-palette text-warning" style="font-size:4rem;"></i>
-                        </div>
-                        <div class="horizontal-card-body">
-                            <span class="badge" style="background:rgba(236,72,153,0.2); color:#EC4899; border:1px solid rgba(236,72,153,0.4); margin-bottom:0.75rem; width:fit-content;">Arts &amp; Heritage</span>
-                            <h4 style="font-size:1.15rem; margin-bottom:0.4rem;">Sinfonia &amp; Colours Symphony</h4>
-                            <p class="text-secondary" style="font-size:0.88rem; line-height:1.55; margin-bottom:1rem;">Award ceremonies honoring stellar achievements in performing arts, music, dance, and creative media.</p>
-                            <a href="events.html?category=4" class="text-primary font-bold" style="margin-top:auto; font-size:0.9rem;">Explore Cultural <i class="bi bi-arrow-right"></i></a>
-                        </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper purple">
+                        <i class="bi bi-award"></i>
                     </div>
-
-                    <div class="horizontal-card">
-                        <div style="height:200px; background:linear-gradient(135deg,#081C15,#2D6A4F); display:flex; align-items:center; justify-content:center;">
-                            <i class="bi bi-briefcase text-info" style="font-size:4rem;"></i>
-                        </div>
-                        <div class="horizontal-card-body">
-                            <span class="badge" style="background:rgba(56,189,248,0.2); color:#38BDF8; border:1px solid rgba(56,189,248,0.4); margin-bottom:0.75rem; width:fit-content;">Industry Network</span>
-                            <h4 style="font-size:1.15rem; margin-bottom:0.4rem;">Global Career Bridge &amp; Expo</h4>
-                            <p class="text-secondary" style="font-size:0.88rem; line-height:1.55; margin-bottom:1rem;">Connect with over 150 multinational corporations, tech giants, and financial institutions for internships.</p>
-                            <a href="events.html?category=3" class="text-primary font-bold" style="margin-top:auto; font-size:0.9rem;">Explore Careers <i class="bi bi-arrow-right"></i></a>
-                        </div>
+                    <div>
+                        <div class="stat-number" data-target="30" data-suffix="+">30+</div>
+                        <div class="stat-label">Student Societies</div>
                     </div>
+                </div>
 
-                    <div class="horizontal-card">
-                        <div style="height:200px; background:linear-gradient(135deg,#1B4332,#081C15); display:flex; align-items:center; justify-content:center;">
-                            <i class="bi bi-stars" style="font-size:4rem; color:#FBB02D;"></i>
-                        </div>
-                        <div class="horizontal-card-body">
-                            <span class="badge" style="background:rgba(251,176,45,0.2); color:#FBB02D; border:1px solid rgba(251,176,45,0.4); margin-bottom:0.75rem; width:fit-content;">Student Societies</span>
-                            <h4 style="font-size:1.15rem; margin-bottom:0.4rem;">NSBM Community &amp; Clubs</h4>
-                            <p class="text-secondary" style="font-size:0.88rem; line-height:1.55; margin-bottom:1rem;">30+ active student societies hosting charity drives, workshops, seminars, and socials across campus.</p>
-                            <a href="events.html" class="text-primary font-bold" style="margin-top:auto; font-size:0.9rem;">All Events <i class="bi bi-arrow-right"></i></a>
-                        </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper orange">
+                        <i class="bi bi-shield-check"></i>
+                    </div>
+                    <div>
+                        <div class="stat-number" data-target="100" data-suffix="%">100%</div>
+                        <div class="stat-label">Verified Digital Passes</div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Event Categories Showcase -->
-        <section class="section-py section-alt-bg">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-tag">Faculties & Clubs</span>
-                    <h2 class="section-title">Explore by Domain</h2>
-                    <p class="section-subtitle">Find activities tailored specifically to your academic faculty and personal interests.</p>
+    /* Featured Events Section */
+    <section class="section-py">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Upcoming Highlights</span>
+                <h2 class="section-title">Premier University Events</h2>
+                <p class="section-subtitle">Reserve your seat for upcoming guest lectures, technological hackathons, and
+                    cultural summits.</p>
+            </div>
+
+            <div id="featuredEventsGrid" class="grid-3">
+                <!-- Loaded dynamically via JavaScript -->
+            </div>
+
+            <div class="text-center" style="margin-top: 3.5rem;">
+                <a href="events.html" class="btn btn-secondary btn-lg btn-pill">
+                    Explore Full Event Directory <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    /* Apple-Style Sticky Storytelling Section */
+    <section class="story-section">
+        <div class="container">
+            <div class="section-header text-center" style="margin-bottom: 3.5rem;">
+                <span class="section-tag">Interactive Journey</span>
+                <h2 class="section-title">The Frictionless Campus Experience</h2>
+                <p class="section-subtitle">How NSBM Event Hub transforms university engagement into an effortless
+                    digital journey.</p>
+            </div>
+
+            <div class="story-grid">
+                <!-- Left: Pinned 3D Device Showcase Canvas -->
+                <div class="story-sticky-pane">
+                    <div class="story-device-canvas">
+                        <!-- Stage 1: Discovery & Real-Time Seat Matrix -->
+                        <div class="story-stage-view active" id="stagePreview1">
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+                                <span class="badge"
+                                    style="background: rgba(251,176,45,0.2); color:#FBB02D; border:1px solid rgba(251,176,45,0.4);">
+                                    <i class="bi bi-compass"></i> Step 1 &bull; Discovery
+                                </span>
+                                <span class="text-secondary" style="font-size:0.8rem;"><i
+                                        class="bi bi-broadcast text-danger"></i> Live Matrix</span>
+                            </div>
+                            <h4 style="font-size:1.2rem; margin-bottom:0.6rem;">NSBM National Hackfest 2026</h4>
+                            <div class="event-meta-item" style="font-size:0.85rem; margin-bottom:1rem;">
+                                <i class="bi bi-geo-alt text-primary"></i> Computing Faculty Auditorium
+                            </div>
+                            <div class="capacity-container" style="margin-bottom:1.25rem;">
+                                <div class="capacity-header">
+                                    <span class="text-secondary">Seats Available</span>
+                                    <span class="text-primary font-bold">142 / 200 (71%)</span>
+                                </div>
+                                <div class="capacity-bar">
+                                    <div class="capacity-progress" style="width: 71%;"></div>
+                                </div>
+                            </div>
+                            <div
+                                style="background:rgba(8,28,21,0.6); padding:0.9rem; border-radius:var(--radius-md); border:1px solid var(--border-glass); display:flex; justify-content:space-between; align-items:center;">
+                                <span style="font-size:0.85rem; color:var(--text-secondary);"><i class="bi bi-tag"></i>
+                                    Computing &amp; AI</span>
+                                <span class="btn btn-primary btn-sm btn-pill"
+                                    style="padding:0.35rem 0.85rem; font-size:0.8rem;">Select Event</span>
+                            </div>
+                        </div>
+
+                        <!-- Stage 2: Instant Verified Digital Ticket Pass -->
+                        <div class="story-stage-view" id="stagePreview2">
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+                                <span class="badge"
+                                    style="background: rgba(82,183,136,0.2); color:#52B788; border:1px solid rgba(82,183,136,0.4);">
+                                    <i class="bi bi-shield-check"></i> Step 2 &bull; Pass Issued
+                                </span>
+                                <span class="text-primary font-bold" style="font-size:0.8rem;">PASS #88492</span>
+                            </div>
+                            <div class="ticket-card"
+                                style="padding:1.5rem; border-radius:var(--radius-md); text-align:center;">
+                                <div class="ticket-header-logo" style="margin-bottom:0.5rem; font-size:1.05rem;">
+                                    <i class="bi bi-stars"></i> NSBM OFFICIAL PASS
+                                </div>
+                                <h4 style="font-size:1.15rem; margin-bottom:0.25rem;">Verified Undergraduate</h4>
+                                <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.75rem;">Faculty
+                                    of Computing &bull; ID: 22.1/NSBM/0842</div>
+                                <div class="ticket-code-text" style="font-size:0.95rem; padding:0.35rem 1rem;">
+                                    TKT-HACKFEST-2026
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stage 3: High-Density QR Laser Validation -->
+                        <div class="story-stage-view" id="stagePreview3" style="position:relative;">
+                            <div class="laser-scanner-line"></div>
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+                                <span class="badge"
+                                    style="background: rgba(56,189,248,0.2); color:#38BDF8; border:1px solid rgba(56,189,248,0.4);">
+                                    <i class="bi bi-qr-code-scan"></i> Step 3 &bull; Gate Validation
+                                </span>
+                                <span class="text-success font-bold" style="font-size:0.82rem;"><i
+                                        class="bi bi-check-circle-fill"></i> Access Granted</span>
+                            </div>
+                            <div class="ticket-qr-box" style="width:140px; height:140px; margin:0.75rem auto 1rem;">
+                                <i class="bi bi-qr-code text-primary" style="font-size:4.5rem;"></i>
+                            </div>
+                            <div class="text-center">
+                                <div
+                                    style="font-size:0.92rem; font-weight:800; color:var(--success); margin-bottom:0.2rem;">
+                                    <i class="bi bi-shield-fill-check"></i> Verified at Turnstile Gate #02
+                                </div>
+                                <div style="font-size:0.78rem; color:var(--text-muted);">Real-time attendance
+                                    synchronized with database</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="grid-4">
-                    <a href="events.html?category=1" class="glass-card text-center" style="padding: 2.5rem 1.5rem; text-decoration: none;">
-                        <div class="stat-icon-wrapper blue" style="margin: 0 auto 1.25rem; width: 64px; height: 64px; font-size: 1.8rem;">
-                            <i class="bi bi-laptop"></i>
+                <!-- Right: Progressive Story Step Narrative Cards -->
+                <div class="story-step-cards">
+                    <div class="story-step-card is-active" data-step="0">
+                        <div class="step-indicator-wrapper">
+                            <div class="step-number-badge">01</div>
+                            <h3 style="font-size:1.35rem; margin-bottom:0;">Discover &amp; Filter in Seconds</h3>
                         </div>
-                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Computing & Tech</h3>
-                        <p class="text-secondary" style="font-size: 0.9rem;">Hackathons, coding challenges, AI symposiums, and cybersecurity workshops.</p>
-                    </a>
+                        <p class="text-secondary" style="font-size:1rem; line-height:1.65; margin-bottom:0;">
+                            Search across faculties, live seat capacities, and calendar schedules. Filter by Computing,
+                            Engineering, Business, or Cultural clubs with instant zero-reload responsive feedback.
+                        </p>
+                    </div>
 
-                    <a href="events.html?category=2" class="glass-card text-center" style="padding: 2.5rem 1.5rem; text-decoration: none;">
-                        <div class="stat-icon-wrapper green" style="margin: 0 auto 1.25rem; width: 64px; height: 64px; font-size: 1.8rem;">
-                            <i class="bi bi-trophy"></i>
+                    <div class="story-step-card" data-step="1">
+                        <div class="step-indicator-wrapper">
+                            <div class="step-number-badge">02</div>
+                            <h3 style="font-size:1.35rem; margin-bottom:0;">1-Click Instant Digital Reservation</h3>
                         </div>
-                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Sports & Athletics</h3>
-                        <p class="text-secondary" style="font-size: 0.9rem;">Inter-faculty cricket, swimming galas, badminton tournaments, and athletics.</p>
-                    </a>
+                        <p class="text-secondary" style="font-size:1rem; line-height:1.65; margin-bottom:0;">
+                            Reserve your confirmed university seat in under 3 seconds. The system immediately binds your
+                            student credentials, generates an official verifiable pass number, and stores it in your
+                            dashboard.
+                        </p>
+                    </div>
 
-                    <a href="events.html?category=3" class="glass-card text-center" style="padding: 2.5rem 1.5rem; text-decoration: none;">
-                        <div class="stat-icon-wrapper orange" style="margin: 0 auto 1.25rem; width: 64px; height: 64px; font-size: 1.8rem;">
-                            <i class="bi bi-briefcase"></i>
+                    <div class="story-step-card" data-step="2">
+                        <div class="step-indicator-wrapper">
+                            <div class="step-number-badge">03</div>
+                            <h3 style="font-size:1.35rem; margin-bottom:0;">Frictionless QR Check-In at Venue</h3>
                         </div>
-                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Career & Industry</h3>
-                        <p class="text-secondary" style="font-size: 0.9rem;">Career fairs, resume clinics, and networking sessions with top employers.</p>
-                    </a>
-
-                    <a href="events.html?category=4" class="glass-card text-center" style="padding: 2.5rem 1.5rem; text-decoration: none;">
-                        <div class="stat-icon-wrapper purple" style="margin: 0 auto 1.25rem; width: 64px; height: 64px; font-size: 1.8rem;">
-                            <i class="bi bi-palette"></i>
-                        </div>
-                        <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Cultural & Arts</h3>
-                        <p class="text-secondary" style="font-size: 0.9rem;">Drama, musical showcases, traditional dance, and art exhibitions.</p>
-                    </a>
+                        <p class="text-secondary" style="font-size:1rem; line-height:1.65; margin-bottom:0;">
+                            Present your digital QR ticket at auditorium turnstiles or society check-in desks.
+                            High-speed laser scanning validates attendance in real-time without paper queues.
+                        </p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+
+    /* Campus life Horizonatal Showcase */
+    <section class="horizontal-gallery-section">
+        <div class="container">
+            <div class="horizontal-gallery-header">
+                <div>
+                    <span class="section-tag">Campus Highlights</span>
+                    <h2 class="section-title">Life at Green University Town</h2>
+                    <p class="section-subtitle">Experience academic excellence, technological innovation, and vibrant
+                        cultural celebrations.</p>
+                </div>
+                <div class="horizontal-nav-controls">
+                    <button class="horizontal-nav-btn prev" aria-label="Previous"><i
+                            class="bi bi-chevron-left"></i></button>
+                    <button class="horizontal-nav-btn next" aria-label="Next"><i
+                            class="bi bi-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="horizontal-scroll-track">
+                <div class="horizontal-card">
+                    <div
+                        style="height:200px; background:linear-gradient(135deg,#081C15,#1B4332); display:flex; align-items:center; justify-content:center;">
+                        <i class="bi bi-laptop text-primary" style="font-size:4rem;"></i>
+                    </div>
+                    <div class="horizontal-card-body">
+                        <span class="badge"
+                            style="background:rgba(251,176,45,0.2); color:#FBB02D; border:1px solid rgba(251,176,45,0.4); margin-bottom:0.75rem; width:fit-content;">Computing
+                            Faculty</span>
+                        <h4 style="font-size:1.15rem; margin-bottom:0.4rem;">National Hackfest &amp; AI Expo</h4>
+                        <p class="text-secondary" style="font-size:0.88rem; line-height:1.55; margin-bottom:1rem;">
+                            24-hour non-stop algorithmic problem solving, machine learning showcases, and industry
+                            venture pitches.</p>
+                        <a href="events.html?category=1" class="text-primary font-bold"
+                            style="margin-top:auto; font-size:0.9rem;">Explore Tech Events <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="horizontal-card">
+                    <div
+                        style="height:200px; background:linear-gradient(135deg,#1B4332,#2D6A4F); display:flex; align-items:center; justify-content:center;">
+                        <i class="bi bi-trophy text-success" style="font-size:4rem;"></i>
+                    </div>
+                    <div class="horizontal-card-body">
+                        <span class="badge"
+                            style="background:rgba(82,183,136,0.2); color:#52B788; border:1px solid rgba(82,183,136,0.4); margin-bottom:0.75rem; width:fit-content;">Athletics
+                            &amp; Sports</span>
+                        <h4 style="font-size:1.15rem; margin-bottom:0.4rem;">Inter-Faculty Championship Gala</h4>
+                        <p class="text-secondary" style="font-size:0.88rem; line-height:1.55; margin-bottom:1rem;">
+                            Cricket, swimming, rugby, and badminton tournaments hosted on world-class university sports
+                            grounds.</p>
+                        <a href="events.html?category=2" class="text-primary font-bold"
+                            style="margin-top:auto; font-size:0.9rem;">Explore Sports <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="horizontal-card">
+                    <div
+                        style="height:200px; background:linear-gradient(135deg,#1B4322,#386641); display:flex; align-items:center; justify-content:center;">
+                        <i class="bi bi-palette text-warning" style="font-size:4rem;"></i>
+                    </div>
+                    <div class="horizontal-card-body">
+                        <span class="badge"
+                            style="background:rgba(236,72,153,0.2); color:#EC4899; border:1px solid rgba(236,72,153,0.4); margin-bottom:0.75rem; width:fit-content;">Arts
+                            &amp; Heritage</span>
+                        <h4 style="font-size:1.15rem; margin-bottom:0.4rem;">Sinfonia &amp; Colours Symphony</h4>
+                        <p class="text-secondary" style="font-size:0.88rem; line-height:1.55; margin-bottom:1rem;">Award
+                            ceremonies honoring stellar achievements in performing arts, music, dance, and creative
+                            media.</p>
+                        <a href="events.html?category=4" class="text-primary font-bold"
+                            style="margin-top:auto; font-size:0.9rem;">Explore Cultural <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="horizontal-card">
+                    <div
+                        style="height:200px; background:linear-gradient(135deg,#081C15,#2D6A4F); display:flex; align-items:center; justify-content:center;">
+                        <i class="bi bi-briefcase text-info" style="font-size:4rem;"></i>
+                    </div>
+                    <div class="horizontal-card-body">
+                        <span class="badge"
+                            style="background:rgba(56,189,248,0.2); color:#38BDF8; border:1px solid rgba(56,189,248,0.4); margin-bottom:0.75rem; width:fit-content;">Industry
+                            Network</span>
+                        <h4 style="font-size:1.15rem; margin-bottom:0.4rem;">Global Career Bridge &amp; Expo</h4>
+                        <p class="text-secondary" style="font-size:0.88rem; line-height:1.55; margin-bottom:1rem;">
+                            Connect with over 150 multinational corporations, tech giants, and financial institutions
+                            for internships.</p>
+                        <a href="events.html?category=3" class="text-primary font-bold"
+                            style="margin-top:auto; font-size:0.9rem;">Explore Careers <i
+                                class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="horizontal-card">
+                    <div
+                        style="height:200px; background:linear-gradient(135deg,#1B4332,#081C15); display:flex; align-items:center; justify-content:center;">
+                        <i class="bi bi-stars" style="font-size:4rem; color:#FBB02D;"></i>
+                    </div>
+                    <div class="horizontal-card-body">
+                        <span class="badge"
+                            style="background:rgba(251,176,45,0.2); color:#FBB02D; border:1px solid rgba(251,176,45,0.4); margin-bottom:0.75rem; width:fit-content;">Student
+                            Societies</span>
+                        <h4 style="font-size:1.15rem; margin-bottom:0.4rem;">NSBM Community &amp; Clubs</h4>
+                        <p class="text-secondary" style="font-size:0.88rem; line-height:1.55; margin-bottom:1rem;">30+
+                            active student societies hosting charity drives, workshops, seminars, and socials across
+                            campus.</p>
+                        <a href="events.html" class="text-primary font-bold"
+                            style="margin-top:auto; font-size:0.9rem;">All Events <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Categories Showcase -->
+    <section class="section-py section-alt-bg">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Faculties & Clubs</span>
+                <h2 class="section-title">Explore by Domain</h2>
+                <p class="section-subtitle">Find activities tailored specifically to your academic faculty and personal
+                    interests.</p>
+            </div>
+
+            <div class="grid-4">
+                <a href="events.html?category=1" class="glass-card text-center"
+                    style="padding: 2.5rem 1.5rem; text-decoration: none;">
+                    <div class="stat-icon-wrapper blue"
+                        style="margin: 0 auto 1.25rem; width: 64px; height: 64px; font-size: 1.8rem;">
+                        <i class="bi bi-laptop"></i>
+                    </div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Computing & Tech</h3>
+                    <p class="text-secondary" style="font-size: 0.9rem;">Hackathons, coding challenges, AI symposiums,
+                        and cybersecurity workshops.</p>
+                </a>
+
+                <a href="events.html?category=2" class="glass-card text-center"
+                    style="padding: 2.5rem 1.5rem; text-decoration: none;">
+                    <div class="stat-icon-wrapper green"
+                        style="margin: 0 auto 1.25rem; width: 64px; height: 64px; font-size: 1.8rem;">
+                        <i class="bi bi-trophy"></i>
+                    </div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Sports & Athletics</h3>
+                    <p class="text-secondary" style="font-size: 0.9rem;">Inter-faculty cricket, swimming galas,
+                        badminton tournaments, and athletics.</p>
+                </a>
+
+                <a href="events.html?category=3" class="glass-card text-center"
+                    style="padding: 2.5rem 1.5rem; text-decoration: none;">
+                    <div class="stat-icon-wrapper orange"
+                        style="margin: 0 auto 1.25rem; width: 64px; height: 64px; font-size: 1.8rem;">
+                        <i class="bi bi-briefcase"></i>
+                    </div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Career & Industry</h3>
+                    <p class="text-secondary" style="font-size: 0.9rem;">Career fairs, resume clinics, and networking
+                        sessions with top employers.</p>
+                </a>
+
+                <a href="events.html?category=4" class="glass-card text-center"
+                    style="padding: 2.5rem 1.5rem; text-decoration: none;">
+                    <div class="stat-icon-wrapper purple"
+                        style="margin: 0 auto 1.25rem; width: 64px; height: 64px; font-size: 1.8rem;">
+                        <i class="bi bi-palette"></i>
+                    </div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Cultural & Arts</h3>
+                    <p class="text-secondary" style="font-size: 0.9rem;">Drama, musical showcases, traditional dance,
+                        and art exhibitions.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    /* University Experience CTA */
+    <section class="section-py">
+        <div class="container">
+            <div class="glass-panel cta-panel text-center"
+                style="padding: 4rem 2rem; position: relative; overflow: hidden;">
+                <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin-bottom: 1rem;">
+                    Ready to make your mark at NSBM?
+                </h2>
+                <p class="text-secondary" style="max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem;">
+                    Create your student account in under 60 seconds to unlock instant digital event passes, personal
+                    schedule tracking, and exclusive announcements.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="register.html" class="btn btn-primary btn-lg btn-pill">Get Started Free</a>
+                    <a href="login.html" class="btn btn-secondary btn-lg btn-pill">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
