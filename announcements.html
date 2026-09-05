@@ -86,3 +86,89 @@
             </div>
         </div>
     </footer>
+
+    
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('announcementsList');
+            const searchInput = document.getElementById('announcementSearchInput');
+            const prioritySelect = document.getElementById('announcementPriorityFilter');
+
+            async function loadAnnouncements() {
+                container.innerHTML = `
+                    <div class="skeleton skeleton-title"></div>
+                    <div class="skeleton skeleton-text"></div>
+                `;
+
+                const search = searchInput ? searchInput.value.trim() : '';
+                const priority = prioritySelect ? prioritySelect.value : 'all';
+
+                const params = new URLSearchParams({ search, priority });
+
+                try {
+                    const res = await fetch(`${API_BASE}announcements/read.php?${params.toString()}`);
+                    const json = await res.json();
+
+                    if (json.success && json.data.announcements && json.data.announcements.length > 0) {
+                        container.innerHTML = json.data.announcements.map(a => {
+                            let priorityClass = 'status-upcoming';
+                            let priorityLabel = 'GENERAL';
+                            if (a.priority === 'urgent') {
+                                priorityClass = 'status-cancelled';
+                                priorityLabel = 'URGENT NOTICE';
+                            } else if (a.priority === 'high') {
+                                priorityClass = 'status-ongoing';
+                                priorityLabel = 'HIGH PRIORITY';
+                            } else if (a.priority === 'medium') {
+                                priorityClass = 'status-upcoming';
+                                priorityLabel = 'NOTICE';
+                            }
+
+                            return `
+                                <div class="glass-card animate-fade-up" style="border-left: 4px solid ${a.priority === 'urgent' ? 'var(--danger)' : 'var(--primary)'};">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+                                        <span class="event-badge-status ${priorityClass}" style="position: static; display: inline-block;">
+                                            ${priorityLabel}
+                                        </span>
+                                        <span class="text-secondary" style="font-size: 0.85rem;">
+                                            <i class="bi bi-clock-history"></i> Posted on ${formatDate(a.created_at)}
+                                        </span>
+                                    </div>
+                                    <h3 style="font-size: 1.35rem; margin-bottom: 0.75rem;">${escapeHTML(a.title)}</h3>
+                                    <p class="text-secondary" style="font-size: 1rem; line-height: 1.7; margin-bottom: 0;">${escapeHTML(a.content)}</p>
+                                </div>
+                            `;
+                        }).join('');
+                        if (window.initScrollReveal) window.initScrollReveal();
+                        if (window.initCardSheenEffect) window.initCardSheenEffect();
+                    } else {
+                        container.innerHTML = `
+                            <div class="glass-panel text-center" style="padding: 3rem;">
+                                <i class="bi bi-bell-slash" style="font-size: 3rem; color: var(--text-muted);"></i>
+                                <h4 style="margin-top: 1rem;">No Announcements Found</h4>
+                                <p class="text-secondary">No notices match your current filter criteria.</p>
+                            </div>
+                        `;
+                    }
+                } catch (e) {
+                    console.error('Announcements load error:', e);
+                }
+            }
+
+            if (searchInput) {
+                let debounce;
+                searchInput.addEventListener('input', () => {
+                    clearTimeout(debounce);
+                    debounce = setTimeout(loadAnnouncements, 300);
+                });
+            }
+            if (prioritySelect) prioritySelect.addEventListener('change', loadAnnouncements);
+
+            loadAnnouncements();
+        });
+    </script>
+</body>
+</html>
+
