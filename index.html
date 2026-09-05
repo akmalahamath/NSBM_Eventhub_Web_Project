@@ -12,6 +12,7 @@
 
 <body>
 
+    /* navbar */
     <header class="site-header">
         <div class="container">
             <nav class="navbar">
@@ -46,6 +47,7 @@
         </div>
     </header>
 
+    /* Hero Section*/
      <section class="hero-section">
             <div class="hero-glow-blob amber"></div>
             <div class="hero-glow-blob green"></div>
@@ -79,6 +81,53 @@
                     </div>
                     <div id="homeNextEventCountdown" class="countdown-box">
                         <!-- Loaded dynamically via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        /* Dynamic Statistics Counters */
+        <section class="section-py" style="padding-top: 2rem; padding-bottom: 3rem;">
+            <div class="container">
+                <div class="grid-4">
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper blue">
+                            <i class="bi bi-calendar4-event"></i>
+                        </div>
+                        <div>
+                            <div class="stat-number" data-target="50" data-suffix="+">50+</div>
+                            <div class="stat-label">Annual Campus Events</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper green">
+                            <i class="bi bi-people"></i>
+                        </div>
+                        <div>
+                            <div class="stat-number" data-target="12000" data-suffix="+">12,000+</div>
+                            <div class="stat-label">Active Undergraduates</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper purple">
+                            <i class="bi bi-award"></i>
+                        </div>
+                        <div>
+                            <div class="stat-number" data-target="30" data-suffix="+">30+</div>
+                            <div class="stat-label">Student Societies</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon-wrapper orange">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <div>
+                            <div class="stat-number" data-target="100" data-suffix="%">100%</div>
+                            <div class="stat-label">Verified Digital Passes</div>
+                        </div>
                     </div>
                 </div>
             </div>
