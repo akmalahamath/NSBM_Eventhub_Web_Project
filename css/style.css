@@ -120,6 +120,47 @@
     --shadow-glow-gold: 0 10px 25px -4px rgba(217, 119, 6, 0.28), 0 0 15px rgba(251, 176, 45, 0.18);
     --shadow-glow-emerald: 0 12px 30px -5px rgba(45, 106, 79, 0.18);
 }
+/* GLASSMORPHISM PANELS & CARDS */
+.glass-card {
+    background: var(--bg-surface-card);
+    backdrop-filter: var(--blur-glass);
+    -webkit-backdrop-filter: var(--blur-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-glass);
+    transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-glass-light), transparent);
+}
+
+.glass-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--border-glass-gold);
+    box-shadow: var(--shadow-lg), var(--shadow-glow-emerald);
+}
+
+.glass-panel {
+    background: var(--bg-surface-card);
+    backdrop-filter: var(--blur-glass);
+    -webkit-backdrop-filter: var(--blur-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-glass);
+    position: relative;
+}
+
 
 /* MAGNETIC ULTRA-ATTRACTIVE BUTTONS */
 .btn {
