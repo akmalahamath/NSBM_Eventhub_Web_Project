@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Categories — NSBM Event Hub</title>
+    <link rel="stylesheet" href="css/style.css?v=2.1">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+    <!-- Sticky Glass Navigation Bar -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="navbar-brand">
+                    <img src="images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text">NSBM <span>EventHub</span></div>
+                </a>
+
+                <ul class="navbar-nav">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="events.html" class="nav-link">Events</a></li>
+                    <li><a href="categories.html" class="nav-link active">Categories</a></li>
+                    <li><a href="announcements.html" class="nav-link">Announcements</a></li>
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <div id="navAuthActions" style="display: flex; gap: 0.75rem;">
+                        <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+                    </div>
+                    <button class="nav-hamburger" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="section-py" style="padding-top: 3.5rem;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Explore by Theme</span>
+                <h1 class="section-title">Event Categories</h1>
+                <p class="section-subtitle">Find upcoming competitions, symposiums, recreational tournaments, and workshops curated by NSBM faculties.</p>
+            </div>
+
+            <div id="categoriesCardsGrid" class="grid-3">
+                <!-- Loaded dynamically via JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <div>&copy; 2026 NSBM Event Hub. All Rights Reserved.</div>
+                <a href="events.html">Browse All Events</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const grid = document.getElementById('categoriesCardsGrid');
+            grid.innerHTML = `
+                <div class="skeleton skeleton-img"></div>
+                <div class="skeleton skeleton-img"></div>
+                <div class="skeleton skeleton-img"></div>
+            `;
+
+            try {
+                const res = await fetch(`${API_BASE}categories/read.php`);
+                const json = await res.json();
+
+                if (json.success && json.data.categories) {
+                    grid.innerHTML = json.data.categories.map(c => `
+                        <div class="glass-card animate-fade-up text-center" style="display: flex; flex-direction: column; justify-content: space-between; padding: 2.5rem 1.75rem;">
+                            <div>
+                                <div class="stat-icon-wrapper blue" style="margin: 0 auto 1.5rem; width: 68px; height: 68px; font-size: 2rem;">
+                                    <i class="bi ${c.icon || 'bi-bookmark-star'}"></i>
+                                </div>
+                                <h3 style="font-size: 1.35rem; margin-bottom: 0.75rem;">${escapeHTML(c.name)}</h3>
+                                <p class="text-secondary" style="font-size: 0.92rem; margin-bottom: 1.5rem;">${escapeHTML(c.description || 'Explore events in this department.')}</p>
+                            </div>
+                            
+                            <div>
+                                <div style="margin-bottom: 1.25rem; font-size: 0.88rem; font-weight: 700; color: var(--primary);">
+                                    <i class="bi bi-calendar-check"></i> ${c.upcoming_events} Upcoming Event(s) &bull; ${c.total_events} Total
+                                </div>
+                                <a href="events.html?category=${c.id}" class="btn btn-secondary btn-sm" style="width: 100%;">
+                                    View Events <i class="bi bi-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    `).join('');
+                    if (window.initScrollReveal) window.initScrollReveal();
+                    if (window.initCardSheenEffect) window.initCardSheenEffect();
+                }
+            } catch (err) {
+                console.error('Categories error:', err);
+                grid.innerHTML = `<div class="alert text-danger">Failed to load categories.</div>`;
+            }
+        });
+    </script>
+</body>
+</html>
