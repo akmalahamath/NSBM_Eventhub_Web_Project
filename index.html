@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    
+
     <header class="site-header">
         <div class="container">
             <nav class="navbar">
@@ -45,6 +45,44 @@
             </nav>
         </div>
     </header>
+
+     <section class="hero-section">
+            <div class="hero-glow-blob amber"></div>
+            <div class="hero-glow-blob green"></div>
+
+            <div class="container">
+                <p class="hero-eyebrow-text animate-fade-in" style="font-size: 1.15rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--primary); margin-bottom: 1.25rem; display: inline-block;">
+                    NSBM Green University
+                </p>
+
+                <h1 class="hero-title animate-fade-up">
+                    Where Campus Life Meets <span>Unforgettable Experiences</span>
+                </h1>
+
+                <p class="hero-subtitle animate-fade-up">
+                    Discover, register, and engage with premier hackathons, career summits, sports tournaments, and cultural nights across NSBM Green University.
+                </p>
+
+                <div class="hero-cta animate-fade-up">
+                    <a href="events.html" class="btn btn-primary btn-lg btn-pill">
+                        <i class="bi bi-compass"></i> Explore All Events
+                    </a>
+                    <a href="register.html" class="btn btn-secondary btn-lg btn-pill">
+                        <i class="bi bi-person-plus"></i> Join as Student
+                    </a>
+                </div>
+
+                <!-- Next Upcoming Event Live Countdown Box -->
+                <div class="animate-fade-up" style="margin-top: 1.5rem;">
+                    <div style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); margin-bottom: 0.75rem;">
+                        <i class="bi bi-stopwatch"></i> Next Event Countdown: <span id="homeNextEventTitle" class="text-primary">NSBM Hackfest 2026</span>
+                    </div>
+                    <div id="homeNextEventCountdown" class="countdown-box">
+                        <!-- Loaded dynamically via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
     <script src="js/main.js"></script>
