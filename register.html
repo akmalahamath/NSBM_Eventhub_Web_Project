@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Student Account — NSBM Event Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body style="display: flex; flex-direction: column; justify-content: space-between; min-height: 100vh;">
+
+    <!-- Sticky Glass Navigation Bar -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="navbar-brand">
+                    <img src="images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text">NSBM <span>EventHub</span></div>
+                </a>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <a href="index.html" class="btn btn-glass btn-sm"><i class="bi bi-arrow-left"></i> Back to Home</a>
+                    <a href="login.html" class="btn btn-secondary btn-sm">Sign In</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem;">
+        <div class="glass-panel animate-fade-up"
+            style="max-width: 520px; width: 100%; padding: 2.5rem; position: relative;">
+
+            <!-- Back Option Links -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                <a href="index.html"
+                    style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--text-secondary); text-decoration: none;">
+                    <i class="bi bi-arrow-left"></i> Back to Home
+                </a>
+                <a href="login.html"
+                    style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--text-secondary); text-decoration: none;">
+                    <i class="bi bi-box-arrow-in-left"></i> Back to Sign In
+                </a>
+            </div>
+
+            <div class="text-center" style="margin-bottom: 2rem;">
+                <img src="images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                <h2 style="font-size: 1.75rem; margin-bottom: 0.35rem;">Join NSBM Event Hub</h2>
+                <p class="text-secondary" style="font-size: 0.92rem;">Create your student account to register for events
+                    and claim digital passes.</p>
+            </div>
+
+            <!-- Registration Form -->
+            <form id="registerForm" onsubmit="handleRegisterFormSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label" for="regFullName">Full Name *</label>
+                    <input type="text" id="regFullName" name="full_name" class="form-control"
+                        placeholder="e.g. Kasun Perera" required>
+                    <div class="form-feedback"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;" class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label" for="regStudentId">Student ID *</label>
+                        <input type="text" id="regStudentId" name="student_id" class="form-control"
+                            placeholder="NSBM-2024-XXXX" required>
+                        <div class="form-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regPhone">Phone Number</label>
+                        <input type="tel" id="regPhone" name="phone" class="form-control" placeholder="+94 77 123 4567">
+                        <div class="form-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="regEmail">University / Personal Email *</label>
+                    <input type="email" id="regEmail" name="email" class="form-control"
+                        placeholder="student@nsbmeventhub.com" required autocomplete="email">
+                    <div class="form-feedback"></div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;" class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label" for="regPassword">Password *</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="regPassword" name="password" class="form-control"
+                                placeholder="Min. 6 chars" required autocomplete="new-password">
+                            <button type="button" class="password-toggle-btn"
+                                onclick="togglePasswordVisibility('regPassword', this)">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                        <div class="form-feedback"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="regConfirmPassword">Confirm Password *</label>
+                        <div class="password-wrapper">
+                            <input type="password" id="regConfirmPassword" name="confirm_password" class="form-control"
+                                placeholder="Re-type password" required autocomplete="new-password">
+                            <button type="button" class="password-toggle-btn"
+                                onclick="togglePasswordVisibility('regConfirmPassword', this)">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                        <div class="form-feedback"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 0.5rem;">
+                    Create Account <i class="bi bi-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="text-center" style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-secondary);">
+                Already have an account? <a href="login.html" class="text-primary font-bold">Sign In here</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Bottom -->
+    <footer
+        style="text-align: center; padding: 1.5rem; border-top: 1px solid var(--border-glass); font-size: 0.85rem; color: var(--text-muted);">
+        &copy; 2026 NSBM Event Hub. All Rights Reserved.
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Validator.attachRealtimeValidation(document.getElementById('registerForm'));
+        });
+    </script>
+</body>
+
+</html>
