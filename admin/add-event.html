@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Event — NSBM Admin Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container-fluid">
+            <nav class="navbar" style="height: 70px;">
+                <a href="../index.html" class="navbar-brand">
+                    <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text" style="font-size: 1.2rem;">NSBM <span>AdminHub</span></div>
+                </a>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <a href="../index.html" class="btn btn-glass btn-sm" title="Go to Public Website Home"><i class="bi bi-house-door"></i> Go to Home</a>
+                    <a href="events.html" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back to Events</a>
+                    <button onclick="handleGlobalLogout()" class="btn btn-glass btn-sm" title="Sign Out">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-user-avatar">
+                    <i class="bi bi-shield-shaded"></i>
+                </div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name user-name-display">Administrator</div>
+                    <div class="sidebar-user-role">SYSTEM ADMIN</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li><a href="dashboard.html" class="sidebar-link"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                <li><a href="events.html" class="sidebar-link"><i class="bi bi-calendar-event"></i> Manage Events</a></li>
+                <li><a href="add-event.html" class="sidebar-link active"><i class="bi bi-calendar-plus"></i> Add Event</a></li>
+                <li><a href="categories.html" class="sidebar-link"><i class="bi bi-tags"></i> Categories</a></li>
+                <li><a href="registrations.html" class="sidebar-link"><i class="bi bi-card-checklist"></i> Registrations</a></li>
+                <li><a href="participants.html" class="sidebar-link"><i class="bi bi-people"></i> Participants &amp; CSV</a></li>
+                <li><a href="announcements.html" class="sidebar-link"><i class="bi bi-megaphone"></i> Announcements</a></li>
+                <li style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);"><a href="../index.html" class="sidebar-link"><i class="bi bi-house-door"></i> Go to Home</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-content">
+            <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                <span class="section-tag"><i class="bi bi-plus-circle"></i> Event Publisher</span>
+                <h1 class="section-title">Create University Event</h1>
+                <p class="section-subtitle">Publish a new workshop, hackathon, career fair, or cultural tournament.</p>
+            </div>
+
+            <div class="glass-panel" style="max-width: 900px; padding: 2.5rem;">
+                <form id="createEventForm" onsubmit="handleCreateEventSubmit(event)">
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="eventTitleInput">Event Title *</label>
+                        <input type="text" id="eventTitleInput" name="title" class="form-control" placeholder="e.g. NSBM AI Innovation Summit 2026" required>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label" for="eventCategorySelect">Category *</label>
+                            <select id="eventCategorySelect" name="category_id" class="form-select" required>
+                                <option value="">Select Category...</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="eventStatusSelect">Event Status</label>
+                            <select id="eventStatusSelect" name="status" class="form-select">
+                                <option value="upcoming" selected>Upcoming</option>
+                                <option value="ongoing">Ongoing</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="eventDescInput">Event Description *</label>
+                        <textarea id="eventDescInput" name="description" class="form-control" rows="4" placeholder="Detailed program description, prerequisites, and highlights..." required></textarea>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;" class="grid-3">
+                        <div class="form-group">
+                            <label class="form-label" for="eventDateInput">Event Date *</label>
+                            <input type="date" id="eventDateInput" name="event_date" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="eventStartTimeInput">Start Time *</label>
+                            <input type="time" id="eventStartTimeInput" name="start_time" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="eventEndTimeInput">End Time *</label>
+                            <input type="time" id="eventEndTimeInput" name="end_time" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label" for="eventVenueInput">Venue / Location *</label>
+                            <input type="text" id="eventVenueInput" name="venue" class="form-control" placeholder="e.g. Computing Faculty Auditorium" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="eventOrganizerInput">Organizer / Department *</label>
+                            <input type="text" id="eventOrganizerInput" name="organizer" class="form-control" placeholder="e.g. Faculty of Computing & IEEE Student Branch" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label" for="eventCapacityInput">Maximum Seat Capacity *</label>
+                            <input type="number" id="eventCapacityInput" name="max_participants" class="form-control" value="100" min="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="eventDeadlineInput">Registration Deadline</label>
+                            <input type="datetime-local" id="eventDeadlineInput" name="registration_deadline" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="eventImageInput">Event Banner Image (Optional)</label>
+                        <input type="file" id="eventImageInput" name="image" class="form-control" accept="image/*">
+                        <small class="text-muted">Upload an image file. Leave empty to use a high-quality default technology banner.</small>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                        <a href="events.html" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-check-circle"></i> Publish Event
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const admin = await enforceAuthGuard('admin');
+            if (!admin) return;
+
+            // Load Categories into dropdown
+            try {
+                const res = await fetch(`${API_BASE}categories/read.php`);
+                const json = await res.json();
+                if (json.success && json.data.categories) {
+                    const select = document.getElementById('eventCategorySelect');
+                    json.data.categories.forEach(c => {
+                        const opt = document.createElement('option');
+                        opt.value = c.id;
+                        opt.textContent = c.name;
+                        select.appendChild(opt);
+                    });
+                }
+            } catch (e) {
+                console.error('Categories load error:', e);
+            }
+        });
+
+        async function handleCreateEventSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            const formData = new FormData(form);
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span> Publishing...';
+
+            try {
+                const res = await fetch(`${API_BASE}events/create.php`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const json = await res.json();
+
+                if (json.success) {
+                    showToast('success', 'Event Published', json.message);
+                    setTimeout(() => {
+                        window.location.href = 'events.html';
+                    }, 1000);
+                } else {
+                    showToast('error', 'Creation Failed', json.message);
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Publish Event';
+                }
+            } catch (err) {
+                console.error('Create event error:', err);
+                showToast('error', 'Network Error', 'Could not reach backend.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Publish Event';
+            }
+        }
+    </script>
+</body>
+</html>
