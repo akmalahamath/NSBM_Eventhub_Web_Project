@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Announcements — NSBM Admin Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container-fluid">
+            <nav class="navbar" style="height: 70px;">
+                <a href="../index.html" class="navbar-brand">
+                    <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text" style="font-size: 1.2rem;">NSBM <span>AdminHub</span></div>
+                </a>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <a href="../index.html" class="btn btn-glass btn-sm" title="Go to Public Website Home"><i class="bi bi-house-door"></i> Go to Home</a>
+                    <button onclick="openAddAnnouncementModal()" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> Post Announcement</button>
+                    <button onclick="handleGlobalLogout()" class="btn btn-glass btn-sm" title="Sign Out">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-user-avatar">
+                    <i class="bi bi-shield-shaded"></i>
+                </div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name user-name-display">Administrator</div>
+                    <div class="sidebar-user-role">SYSTEM ADMIN</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li><a href="dashboard.html" class="sidebar-link"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                <li><a href="events.html" class="sidebar-link"><i class="bi bi-calendar-event"></i> Manage Events</a></li>
+                <li><a href="add-event.html" class="sidebar-link"><i class="bi bi-calendar-plus"></i> Add Event</a></li>
+                <li><a href="categories.html" class="sidebar-link"><i class="bi bi-tags"></i> Categories</a></li>
+                <li><a href="registrations.html" class="sidebar-link"><i class="bi bi-card-checklist"></i> Registrations</a></li>
+                <li><a href="participants.html" class="sidebar-link"><i class="bi bi-people"></i> Participants &amp; CSV</a></li>
+                <li><a href="announcements.html" class="sidebar-link active"><i class="bi bi-megaphone"></i> Announcements</a></li>
+                <li style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);"><a href="../index.html" class="sidebar-link"><i class="bi bi-house-door"></i> Go to Home</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <span class="section-tag"><i class="bi bi-megaphone"></i> Communications</span>
+                    <h1 class="section-title">Campus Announcements</h1>
+                    <p class="section-subtitle">Broadcast urgent alerts, schedule shifts, and event notices to students.</p>
+                </div>
+
+                <button onclick="openAddAnnouncementModal()" class="btn btn-primary btn-pill">
+                    <i class="bi bi-plus-circle"></i> Create Announcement
+                </button>
+            </div>
+
+            <!-- Announcements Data Table -->
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Title &amp; Notice</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Created Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminAnnouncementsTableBody">
+                        <!-- Populated dynamically via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Announcement Modal -->
+    <div id="announcementModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="announcementModalTitle" class="modal-title">Post Announcement</h3>
+                <button class="modal-close-btn" data-close-modal>&times;</button>
+            </div>
+            <form id="announcementForm" onsubmit="handleAnnouncementFormSubmit(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="annModalId" name="id">
+
+                    <div class="form-group">
+                        <label class="form-label" for="annModalTitle">Announcement Title *</label>
+                        <input type="text" id="annModalTitle" name="title" class="form-control" placeholder="e.g. Venue Change for Hackfest 2026" required>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;" class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label" for="annModalPriority">Priority Level</label>
+                            <select id="annModalPriority" name="priority" class="form-select">
+                                <option value="low">Low / General</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High Priority</option>
+                                <option value="urgent">Urgent Alert</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="annModalStatus">Publish Status</label>
+                            <select id="annModalStatus" name="status" class="form-select">
+                                <option value="published" selected>Published</option>
+                                <option value="draft">Draft</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="annModalContent">Content *</label>
+                        <textarea id="annModalContent" name="content" class="form-control" rows="4" placeholder="Detailed message to students..." required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-close-modal>Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-sm">Publish Notice</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        let announcementsCache = [];
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const admin = await enforceAuthGuard('admin');
+            if (admin) loadAnnouncements();
+        });
+
+        async function loadAnnouncements() {
+            const tbody = document.getElementById('adminAnnouncementsTableBody');
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4"><span class="spinner"></span> Loading notices...</td></tr>`;
+
+            try {
+                const res = await fetch(`${API_BASE}announcements/read.php?all=1`);
+                const json = await res.json();
+
+                if (json.success && json.data.announcements) {
+                    announcementsCache = json.data.announcements;
+                    tbody.innerHTML = announcementsCache.map(a => {
+                        let priorityClass = 'status-upcoming';
+                        if (a.priority === 'urgent') priorityClass = 'status-cancelled';
+                        else if (a.priority === 'high') priorityClass = 'status-ongoing';
+
+                        return `
+                            <tr>
+                                <td>
+                                    <strong class="text-white">${escapeHTML(a.title)}</strong>
+                                    <p class="text-secondary" style="font-size: 0.85rem; margin: 0.25rem 0 0 0; max-width: 420px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        ${escapeHTML(a.content)}
+                                    </p>
+                                </td>
+                                <td><span class="event-badge-status ${priorityClass}" style="position:static; display:inline-block; font-size:0.75rem; padding:0.25rem 0.6rem;">${a.priority.toUpperCase()}</span></td>
+                                <td><span class="badge" style="background:rgba(255,255,255,0.08); padding:0.25rem 0.6rem; border-radius:9999px; font-size:0.75rem;">${a.status.toUpperCase()}</span></td>
+                                <td>${formatDate(a.created_at)}</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <button onclick="openEditAnnouncementModal(${a.id})" class="btn btn-secondary btn-sm" title="Edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                        <button onclick="handleDeleteAnnouncement(${a.id}, '${escapeHTML(a.title)}')" class="btn btn-danger btn-sm" title="Delete">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
+            } catch (e) {
+                console.error('Announcements load error:', e);
+            }
+        }
+
+        function openAddAnnouncementModal() {
+            document.getElementById('announcementModalTitle').textContent = 'Post Announcement';
+            document.getElementById('annModalId').value = '';
+            document.getElementById('annModalTitle').value = '';
+            document.getElementById('annModalContent').value = '';
+            document.getElementById('annModalPriority').value = 'medium';
+            document.getElementById('annModalStatus').value = 'published';
+            openModal('announcementModal');
+        }
+
+        function openEditAnnouncementModal(id) {
+            const ann = announcementsCache.find(a => a.id == id);
+            if (!ann) return;
+
+            document.getElementById('announcementModalTitle').textContent = 'Edit Announcement';
+            document.getElementById('annModalId').value = ann.id;
+            document.getElementById('annModalTitle').value = ann.title;
+            document.getElementById('annModalContent').value = ann.content;
+            document.getElementById('annModalPriority').value = ann.priority;
+            document.getElementById('annModalStatus').value = ann.status;
+            openModal('announcementModal');
+        }
+
+        async function handleAnnouncementFormSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const id = form.id.value;
+            const title = form.title.value.trim();
+            const content = form.content.value.trim();
+            const priority = form.priority.value;
+            const status = form.status.value;
+
+            const isEdit = !!id;
+            const endpoint = isEdit ? `${API_BASE}announcements/update.php` : `${API_BASE}announcements/create.php`;
+
+            try {
+                const res = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id, title, content, priority, status })
+                });
+                const json = await res.json();
+
+                if (json.success) {
+                    showToast('success', isEdit ? 'Notice Updated' : 'Notice Posted', json.message);
+                    closeModal('announcementModal');
+                    loadAnnouncements();
+                } else {
+                    showToast('error', 'Operation Failed', json.message);
+                }
+            } catch (err) {
+                console.error('Announcement submit error:', err);
+            }
+        }
+
+        async function handleDeleteAnnouncement(id, title) {
+            if (!confirm(`Are you sure you want to delete announcement "${title}"?`)) return;
+
+            try {
+                const res = await fetch(`${API_BASE}announcements/delete.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id })
+                });
+                const json = await res.json();
+                if (json.success) {
+                    showToast('success', 'Announcement Deleted', json.message);
+                    loadAnnouncements();
+                } else {
+                    showToast('error', 'Delete Failed', json.message);
+                }
+            } catch (err) {
+                console.error('Delete announcement error:', err);
+            }
+        }
+    </script>
+</body>
+</html>
