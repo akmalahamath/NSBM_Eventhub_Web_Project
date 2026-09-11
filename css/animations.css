@@ -1,0 +1,446 @@
+
+/* Apple-Style Smooth Fade Up with Focus Sharpness */
+@keyframes appleFadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(32px) scale(0.98);
+        filter: blur(8px);
+    }
+    60% {
+        filter: blur(0px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+    }
+}
+
+/* Apple-Style Fade In */
+@keyframes appleFadeIn {
+    0% {
+        opacity: 0;
+        filter: blur(6px);
+    }
+    100% {
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
+
+/* Apple-Style Scale In */
+@keyframes appleScaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.92);
+        filter: blur(4px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0px);
+    }
+}
+
+/* Organic Floating Movement */
+@keyframes organicFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    33% {
+        transform: translateY(-8px) rotate(0.5deg);
+    }
+    66% {
+        transform: translateY(-4px) rotate(-0.5deg);
+    }
+}
+
+/* Ambient Atmospheric Glow Pulse */
+@keyframes ambientGlowPulse {
+    0%, 100% {
+        opacity: 0.25;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.45;
+        transform: scale(1.12);
+    }
+}
+
+/* Magnetic Button Light Sheen Sweep */
+@keyframes buttonSheenSweep {
+    0% {
+        left: -120%;
+    }
+    100% {
+        left: 200%;
+    }
+}
+
+/* Hero Tag Shimmer Glint */
+@keyframes heroTagGlint {
+    0% {
+        left: -100%;
+    }
+    40%, 100% {
+        left: 200%;
+    }
+}
+
+/* Subtle Shimmer for Skeleton Loaders */
+@keyframes luxuryShimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Smooth Spinner */
+@keyframes smoothSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Pulse Highlight for Live Indicators */
+@keyframes liveDotPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(251, 176, 45, 0.8);
+        transform: scale(0.95);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(251, 176, 45, 0);
+        transform: scale(1.1);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(251, 176, 45, 0);
+        transform: scale(0.95);
+    }
+}
+
+/* Apple-Style QR Laser Scanning Beam */
+@keyframes qrLaserScan {
+    0% {
+        top: 0%;
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        top: 96%;
+        opacity: 0.8;
+    }
+}
+
+/* Floating Depth Badges */
+@keyframes floatBadgeSlow {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-12px) rotate(1.5deg);
+    }
+}
+
+@keyframes floatBadgeReverse {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(10px) rotate(-1.5deg);
+    }
+}
+
+/* 3D Story Canvas Morphing Stage Transitions */
+@keyframes stageMorphIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.94) translateY(18px) rotateX(8deg);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0) rotateX(0deg);
+        filter: blur(0px);
+    }
+}
+
+/* Glowing Indicator Pulse */
+@keyframes stepRingPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(251, 176, 45, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(251, 176, 45, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(251, 176, 45, 0);
+    }
+}
+
+/*  ANIMATION UTILITY CLASSES */
+.animate-fade-in {
+    animation: appleFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-up {
+    animation: appleFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+    animation: appleScaleIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+    animation: organicFloat 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+    animation: ambientGlowPulse 8s ease-in-out infinite;
+}
+
+/* Apple-Style Scroll Reveal Classes */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(32px) scale(0.98);
+    filter: blur(8px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+}
+
+.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+}
+
+/* Stagger Delays */
+.delay-1 { transition-delay: 0.08s; animation-delay: 0.08s; }
+.delay-2 { transition-delay: 0.16s; animation-delay: 0.16s; }
+.delay-3 { transition-delay: 0.24s; animation-delay: 0.24s; }
+.delay-4 { transition-delay: 0.32s; animation-delay: 0.32s; }
+.delay-5 { transition-delay: 0.40s; animation-delay: 0.40s; }
+
+/*  SKELETON LOADERS & SPINNERS */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        rgba(27, 67, 50, 0.3) 25%,
+        rgba(45, 106, 79, 0.5) 50%,
+        rgba(27, 67, 50, 0.3) 75%
+    );
+    background-size: 200% 100%;
+    animation: luxuryShimmer 1.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: var(--radius-md);
+}
+
+[data-theme="light"] .skeleton {
+    background: linear-gradient(
+        90deg,
+        rgba(216, 243, 220, 0.4) 25%,
+        rgba(149, 213, 178, 0.6) 50%,
+        rgba(216, 243, 220, 0.4) 75%
+    );
+    background-size: 200% 100%;
+}
+
+.skeleton-text {
+    height: 16px;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.skeleton-title {
+    height: 28px;
+    margin-bottom: 1rem;
+    width: 60%;
+}
+
+.skeleton-img {
+    height: 210px;
+    width: 100%;
+}
+
+/* Spinner Component */
+.spinner {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border: 2.5px solid rgba(251, 176, 45, 0.25);
+    border-radius: 50%;
+    border-top-color: var(--primary);
+    animation: smoothSpin 0.75s linear infinite;
+}
+
+/* APPLE-STYLE EVENT CARD & GLASS CARD 3D SPRING PHYSICS & HOVER SHEEN*/
+
+/* Enhanced Event Card with Apple Physics */
+.event-card {
+    position: relative;
+    will-change: transform, box-shadow, border-color;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease;
+}
+
+/* Apple Card Spotlight Cursor Glare */
+.event-card::after,
+.glass-card::after,
+.stat-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(251, 176, 45, 0.12),
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+[data-theme="light"] .event-card::after,
+[data-theme="light"] .glass-card::after,
+[data-theme="light"] .stat-card::after {
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(82, 183, 136, 0.18),
+        transparent 40%
+    );
+}
+
+.event-card:hover::after,
+.glass-card:hover::after,
+.stat-card:hover::after {
+    opacity: 1;
+}
+
+/* Card Image Ambient Zoom & Soft Lighting */
+.event-card-img-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.event-card-img-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(8, 28, 21, 0.7) 100%);
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+[data-theme="light"] .event-card-img-wrapper::after {
+    background: linear-gradient(180deg, transparent 60%, rgba(8, 28, 21, 0.35) 100%);
+}
+
+.event-card:hover .event-card-img-wrapper::after {
+    opacity: 0.4;
+}
+
+.event-card .event-card-img {
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+
+.event-card:hover .event-card-img {
+    transform: scale(1.07);
+    filter: brightness(1.05) contrast(1.03);
+}
+
+/* Floating Badges Micro-Interactions */
+.event-card .event-badge-category,
+.event-card .event-badge-status {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.event-card:hover .event-badge-category {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(251, 176, 45, 0.3);
+}
+
+.event-card:hover .event-badge-status {
+    transform: translateY(-3px) scale(1.03);
+}
+
+/* Capacity Bar Pulse Fill Physics */
+.capacity-progress {
+    position: relative;
+    overflow: hidden;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.capacity-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: buttonSheenSweep 3s infinite ease-in-out;
+}
+
+/* Apple Magnetic Button Micro-Interactions */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.25s ease,
+                border-color 0.25s ease;
+}
+
+.btn:active {
+    transform: scale(0.96) translateY(1px);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2.5px) scale(1.02);
+    box-shadow: 0 12px 28px -4px rgba(251, 176, 45, 0.5), 0 0 16px rgba(251, 176, 45, 0.3);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2.5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(82, 183, 136, 0.25);
+}
+
+/* Stagger Animation for Grids */
+.grid-3 > .event-card:nth-child(1),
+.grid-3 > .glass-card:nth-child(1),
+.grid-4 > .glass-card:nth-child(1) {
+    animation-delay: 0.05s;
+}
+
+.grid-3 > .event-card:nth-child(2),
+.grid-3 > .glass-card:nth-child(2),
+.grid-4 > .glass-card:nth-child(2) {
+    animation-delay: 0.12s;
+}
+
+.grid-3 > .event-card:nth-child(3),
+.grid-3 > .glass-card:nth-child(3),
+.grid-4 > .glass-card:nth-child(3) {
+    animation-delay: 0.19s;
+}
+
+.grid-3 > .event-card:nth-child(4),
+.grid-4 > .glass-card:nth-child(4) {
+    animation-delay: 0.26s;
+}
+
+.grid-3 > .event-card:nth-child(5) {
+    animation-delay: 0.33s;
+}
+
+.grid-3 > .event-card:nth-child(6) {
+    animation-delay: 0.40s;
+}
+
