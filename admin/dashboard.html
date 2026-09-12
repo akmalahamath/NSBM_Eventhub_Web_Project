@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — NSBM Event Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <!-- Standalone Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container-fluid">
+            <nav class="navbar" style="height: 70px;">
+                <a href="../index.html" class="navbar-brand">
+                    <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text" style="font-size: 1.2rem;">NSBM <span>AdminHub</span></div>
+                </a>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <a href="../index.html" class="btn btn-glass btn-sm" title="Go to Public Website Home"><i class="bi bi-house-door"></i> Go to Home</a>
+                    <a href="add-event.html" class="btn btn-primary btn-sm"><i class="bi bi-plus-lg"></i> Create Event</a>
+                    <button onclick="handleGlobalLogout()" class="btn btn-glass btn-sm" title="Sign Out">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-user-avatar">
+                    <i class="bi bi-shield-shaded"></i>
+                </div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name user-name-display">Administrator</div>
+                    <div class="sidebar-user-role">SYSTEM ADMIN</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li><a href="dashboard.html" class="sidebar-link active"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                <li><a href="events.html" class="sidebar-link"><i class="bi bi-calendar-event"></i> Manage Events</a></li>
+                <li><a href="add-event.html" class="sidebar-link"><i class="bi bi-calendar-plus"></i> Add Event</a></li>
+                <li><a href="categories.html" class="sidebar-link"><i class="bi bi-tags"></i> Categories</a></li>
+                <li><a href="registrations.html" class="sidebar-link"><i class="bi bi-card-checklist"></i> Registrations</a></li>
+                <li><a href="participants.html" class="sidebar-link"><i class="bi bi-people"></i> Participants &amp; CSV</a></li>
+                <li><a href="announcements.html" class="sidebar-link"><i class="bi bi-megaphone"></i> Announcements</a></li>
+                <li style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);"><a href="../index.html" class="sidebar-link"><i class="bi bi-house-door"></i> Go to Home</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-content">
+            <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                <span class="section-tag"><i class="bi bi-cpu"></i> Command Center</span>
+                <h1 class="section-title">System Analytics Dashboard</h1>
+                <p class="section-subtitle">Real-time database performance, student registration activity, and faculty metrics.</p>
+            </div>
+
+            <!-- Statistic Counters Grid (5 Cards) -->
+            <div class="grid-4" style="grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin-bottom: 2.5rem;">
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper blue">
+                        <i class="bi bi-calendar-check"></i>
+                    </div>
+                    <div>
+                        <div id="adminStatTotalEvents" class="stat-number">0</div>
+                        <div class="stat-label">Total Events</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper green">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+                    <div>
+                        <div id="adminStatUpcomingEvents" class="stat-number">0</div>
+                        <div class="stat-label">Upcoming Active</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper purple">
+                        <i class="bi bi-people"></i>
+                    </div>
+                    <div>
+                        <div id="adminStatTotalStudents" class="stat-number">0</div>
+                        <div class="stat-label">Total Students</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper orange">
+                        <i class="bi bi-ticket-perforated"></i>
+                    </div>
+                    <div>
+                        <div id="adminStatTotalRegistrations" class="stat-number">0</div>
+                        <div class="stat-label">Registrations</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper blue">
+                        <i class="bi bi-tags"></i>
+                    </div>
+                    <div>
+                        <div id="adminStatTotalCategories" class="stat-number">0</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Charts Grid (Chart.js) -->
+            <div class="grid-2" style="margin-bottom: 2.5rem;">
+                <div class="glass-card">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1.25rem;"><i class="bi bi-bar-chart-line text-primary"></i> Monthly Registration Volume</h3>
+                    <div style="position: relative; height: 260px; width: 100%;">
+                        <canvas id="chartMonthlyRegistrations"></canvas>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h3 style="font-size: 1.2rem; margin-bottom: 1.25rem;"><i class="bi bi-pie-chart text-success"></i> Category Distribution</h3>
+                    <div style="position: relative; height: 260px; width: 100%;">
+                        <canvas id="chartCategoryDistribution"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Tables: Recent Registrations & Popular Events -->
+            <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 2rem;" class="grid-details-layout">
+                <!-- Recent Registrations -->
+                <div class="glass-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                        <h3 style="font-size: 1.15rem;"><i class="bi bi-clock-history text-primary"></i> Recent Registrations</h3>
+                        <a href="registrations.html" class="text-secondary" style="font-size: 0.85rem;">View All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Event</th>
+                                    <th>Ticket</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminRecentRegistrationsTable">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Most Popular Events -->
+                <div class="glass-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                        <h3 style="font-size: 1.15rem;"><i class="bi bi-trophy text-warning"></i> Popular Events</h3>
+                        <a href="events.html" class="text-secondary" style="font-size: 0.85rem;">Manage</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Event</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                    <th>Seats</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminPopularEventsTable">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initAdminDashboard();
+        });
+    </script>
+</body>
+</html>
