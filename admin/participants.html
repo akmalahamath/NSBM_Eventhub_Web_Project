@@ -3,27 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Event Participants &amp; CSV Export — NSBM Admin Hub</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/animations.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/style.css?v=1.0">
+    <link rel="stylesheet" href="../css/animations.css?v=1.0">
+    <link rel="stylesheet" href="../css/responsive.css?v=1.0">
 </head>
 <body>
 
     <!-- Header -->
     <header class="site-header">
         <div class="container-fluid">
-            <nav class="navbar" style="height: 70px;">
-                <a href="../index.html" class="navbar-brand">
-                    <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
-                    <div class="brand-text" style="font-size: 1.2rem;">NSBM <span>AdminHub</span></div>
-                </a>
+            <nav class="navbar">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <button class="sidebar-toggle-btn" aria-label="Toggle Navigation Menu" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <a href="../index.html" class="navbar-brand">
+                        <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                        <div class="brand-text">NSBM <span>AdminHub</span></div>
+                    </a>
+                </div>
 
                 <div class="nav-actions">
                     <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
                         <i class="bi bi-sun-fill"></i>
                     </button>
-                    <a href="../index.html" class="btn btn-glass btn-sm" title="Go to Public Website Home"><i class="bi bi-house-door"></i> Go to Home</a>
+                    <a href="../index.html" class="btn btn-glass btn-sm nav-extra-btn" title="Go to Public Website Home"><i class="bi bi-house-door"></i> Go to Home</a>
                     <button onclick="handleGlobalLogout()" class="btn btn-glass btn-sm" title="Sign Out">
                         <i class="bi bi-box-arrow-right"></i> Logout
                     </button>
@@ -31,6 +41,7 @@
             </nav>
         </div>
     </header>
+    <div class="sidebar-backdrop"></div>
 
     <div class="dashboard-layout">
         <!-- Sidebar Navigation -->
@@ -43,6 +54,9 @@
                     <div class="sidebar-user-name user-name-display">Administrator</div>
                     <div class="sidebar-user-role">SYSTEM ADMIN</div>
                 </div>
+                <button class="sidebar-close-btn" aria-label="Close menu" type="button">
+                    <i class="bi bi-x-lg"></i>
+                </button>
             </div>
 
             <ul class="sidebar-nav">
@@ -53,7 +67,7 @@
                 <li><a href="registrations.html" class="sidebar-link"><i class="bi bi-card-checklist"></i> Registrations</a></li>
                 <li><a href="participants.html" class="sidebar-link active"><i class="bi bi-people"></i> Participants &amp; CSV</a></li>
                 <li><a href="announcements.html" class="sidebar-link"><i class="bi bi-megaphone"></i> Announcements</a></li>
-                <li style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);"><a href="../index.html" class="sidebar-link"><i class="bi bi-house-door"></i> Go to Home</a></li>
+                <li class="sidebar-divider-link"><a href="../index.html" class="sidebar-link"><i class="bi bi-house-door"></i> Go to Home</a></li>
             </ul>
         </aside>
 
@@ -123,9 +137,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="../js/main.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/admin.js"></script>
+    <script src="../js/main.js?v=1.0"></script>
+    <script src="../js/auth.js?v=1.0"></script>
+    <script src="../js/admin.js?v=1.0"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             initAdminParticipants();
