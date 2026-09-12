@@ -68,33 +68,33 @@ function showTicketPassModal(ticket) {
     if (!modal) {
         modal = document.createElement('div');
         modal.id = 'ticketPassModal';
-        modal.className = 'modal-overlay';
+        modal.className = 'modal-overlay ticket-pass-overlay';
         modal.innerHTML = `
-            <div class="modal-content" style="max-width: 480px;">
+            <div class="modal-content ticket-modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title"><i class="bi bi-qr-code text-primary"></i> Digital Event Pass</h3>
                     <button class="modal-close-btn" data-close-modal>&times;</button>
                 </div>
-                <div class="modal-body" style="padding: 1.5rem;">
+                <div class="modal-body ticket-modal-body">
                     <div class="ticket-card">
                         <div class="ticket-header-logo">
                             <i class="bi bi-shield-check"></i> NSBM GREEN UNIVERSITY
                         </div>
-                        <h4 id="ticketEventTitle" style="font-size: 1.25rem; margin-bottom: 0.5rem; color: #fff;"></h4>
-                        <p id="ticketEventMeta" class="text-secondary" style="font-size: 0.9rem; margin-bottom: 1rem;"></p>
+                        <h4 id="ticketEventTitle" class="ticket-event-title"></h4>
+                        <p id="ticketEventMeta" class="ticket-event-meta text-secondary"></p>
                         
                         <div id="ticketQrWrapper" class="ticket-qr-box"></div>
                         
                         <div id="ticketCodeDisplay" class="ticket-code-text"></div>
                         
-                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed rgba(255,255,255,0.15); display: flex; justify-content: space-between; font-size: 0.85rem;">
+                        <div class="ticket-student-info">
                             <div style="text-align: left;">
-                                <div class="text-secondary">Student</div>
-                                <strong id="ticketStudentName" class="text-white"></strong>
+                                <div class="text-secondary ticket-info-label">Student</div>
+                                <strong id="ticketStudentName" class="text-white ticket-info-value"></strong>
                             </div>
                             <div style="text-align: right;">
-                                <div class="text-secondary">Student ID</div>
-                                <strong id="ticketStudentId" class="text-white"></strong>
+                                <div class="text-secondary ticket-info-label">Student ID</div>
+                                <strong id="ticketStudentId" class="text-white ticket-info-value"></strong>
                             </div>
                         </div>
                     </div>
@@ -120,18 +120,19 @@ function showTicketPassModal(ticket) {
     document.getElementById('ticketStudentName').textContent = ticket.studentName || 'Student';
     document.getElementById('ticketStudentId').textContent = ticket.studentId || 'NSBM Student';
 
-    // Generate Dynamic QR Code
+    // Generate Dynamic Responsive QR Code
     const qrContainer = document.getElementById('ticketQrWrapper');
     qrContainer.innerHTML = '';
     if (window.QRCode) {
+        const qrSize = window.innerWidth <= 480 ? 115 : (window.innerWidth <= 768 ? 125 : 140);
         new QRCode(qrContainer, {
             text: JSON.stringify({
                 ticket: ticket.ticketCode,
                 event: ticket.eventTitle,
                 student: ticket.studentId
             }),
-            width: 160,
-            height: 160,
+            width: qrSize,
+            height: qrSize,
             colorDark: '#081C15',
             colorLight: '#ffffff'
         });

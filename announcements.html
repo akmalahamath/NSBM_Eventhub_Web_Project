@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Announcements & Notices — NSBM Event Hub</title>
-    <link rel="stylesheet" href="css/style.css?v=2.1">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/style.css?v=1.0">
+    <link rel="stylesheet" href="css/animations.css?v=1.0">
+    <link rel="stylesheet" href="css/responsive.css?v=1.0">
 </head>
 <body>
 
@@ -31,9 +34,31 @@
                     <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
                         <i class="bi bi-sun-fill"></i>
                     </button>
-                    <div id="navAuthActions" style="display: flex; gap: 0.75rem;">
-                        <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
-                        <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+                    <div id="navAuthActions">
+                        <div class="nav-auth-desktop">
+                            <a href="login.html" class="btn btn-secondary btn-sm">Login</a>
+                            <a href="register.html" class="btn btn-primary btn-sm">Register</a>
+                        </div>
+                        <div class="user-dropdown-wrapper nav-auth-mobile">
+                            <button type="button" class="user-menu-btn" id="mobileUserBtn" aria-label="User Account" onclick="toggleUserDropdown(event)" title="Account">
+                                <i class="bi bi-person-circle"></i>
+                            </button>
+                            <div class="user-dropdown-menu" id="userDropdownMenu">
+                                <div class="user-dropdown-header">
+                                    <div class="user-dropdown-name">Welcome</div>
+                                    <div class="user-dropdown-role">EventHub Account</div>
+                                </div>
+                                <div class="user-dropdown-divider"></div>
+                                <a href="login.html" class="user-dropdown-item">
+                                    <i class="bi bi-box-arrow-in-right"></i>
+                                    <span>Login</span>
+                                </a>
+                                <a href="register.html" class="user-dropdown-item highlight">
+                                    <i class="bi bi-person-plus-fill"></i>
+                                    <span>Register</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <button class="nav-hamburger" aria-label="Menu">
                         <span></span>
@@ -87,9 +112,8 @@
         </div>
     </footer>
 
-    
     <!-- Scripts -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=1.0"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('announcementsList');
@@ -171,4 +195,3 @@
     </script>
 </body>
 </html>
-

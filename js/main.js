@@ -4,6 +4,9 @@
  * Theme Management, Toast Notifications, Modal Controls, Navbar Physics & Countdown Engine
  */
 
+// Application Version Constant for cache tracking
+window.APP_VERSION = '1.0';
+
 // Detect API base path relative to current HTML location
 const getApiBase = () => {
     const path = window.location.pathname;
@@ -525,8 +528,160 @@ function initNavbar() {
 }
 
 // ==========================================================================
+// DASHBOARD SIDEBAR MOBILE DRAWER CONTROLS
+// ==========================================================================
+function initDashboardSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    if (!sidebar) return;
+
+    // Check or create backdrop
+    let backdrop = document.querySelector('.sidebar-backdrop');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'sidebar-backdrop';
+        document.body.appendChild(backdrop);
+    }
+
+    // Check or inject toggle button in header navbar
+    let toggleBtn = document.querySelector('.sidebar-toggle-btn');
+    if (!toggleBtn) {
+        const nav = document.querySelector('.site-header .navbar');
+        if (nav) {
+            toggleBtn = document.createElement('button');
+            toggleBtn.className = 'sidebar-toggle-btn';
+            toggleBtn.setAttribute('aria-label', 'Toggle Dashboard Menu');
+            toggleBtn.setAttribute('type', 'button');
+            toggleBtn.innerHTML = '<span></span><span></span><span></span>';
+            const brand = nav.querySelector('.navbar-brand');
+            if (brand) {
+                nav.insertBefore(toggleBtn, brand);
+            } else {
+                nav.prepend(toggleBtn);
+            }
+        }
+    }
+
+    // Check or inject close button in sidebar user area
+    let closeBtn = sidebar.querySelector('.sidebar-close-btn');
+    if (!closeBtn) {
+        const userHeader = sidebar.querySelector('.sidebar-user');
+        if (userHeader) {
+            closeBtn = document.createElement('button');
+            closeBtn.className = 'sidebar-close-btn';
+            closeBtn.setAttribute('aria-label', 'Close menu');
+            closeBtn.setAttribute('type', 'button');
+            closeBtn.innerHTML = '<i class="bi bi-x-lg"></i>';
+            userHeader.appendChild(closeBtn);
+        }
+    }
+
+    const openSidebar = () => {
+        sidebar.classList.add('active');
+        backdrop.classList.add('active');
+        if (toggleBtn) toggleBtn.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeSidebar = () => {
+        sidebar.classList.remove('active');
+        backdrop.classList.remove('active');
+        if (toggleBtn) toggleBtn.classList.remove('active');
+        document.body.style.overflow = '';
+    };
+
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (sidebar.classList.contains('active')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeSidebar();
+        });
+    }
+
+    backdrop.addEventListener('click', closeSidebar);
+
+    // Close when clicking any link in sidebar on mobile
+    sidebar.querySelectorAll('.sidebar-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 992) {
+                closeSidebar();
+            }
+        });
+    });
+
+    // Close on Escape key
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+            closeSidebar();
+        }
+    });
+
+    // Close when resizing above 992px
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 992 && sidebar.classList.contains('active')) {
+            closeSidebar();
+        }
+    });
+}
+
+// ==========================================================================
 // GLOBAL AUTH STATE & NAVIGATION SYNC
 // ==========================================================================
+// ==========================================================================
+// USER ACCOUNT DROPDOWN (MOBILE SINGLE BUTTON)
+// ==========================================================================
+function toggleUserDropdown(event) {
+    if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+    }
+    const menu = document.getElementById('userDropdownMenu');
+    const btn = document.getElementById('mobileUserBtn');
+    if (!menu) return;
+    const isOpen = menu.classList.contains('show');
+    if (isOpen) {
+        menu.classList.remove('show');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+    } else {
+        menu.classList.add('show');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+    }
+}
+
+// Global click listener to close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    const wrapper = document.querySelector('.user-dropdown-wrapper');
+    const menu = document.getElementById('userDropdownMenu');
+    if (menu && menu.classList.contains('show')) {
+        if (!wrapper || !wrapper.contains(e.target)) {
+            menu.classList.remove('show');
+            const btn = document.getElementById('mobileUserBtn');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+    }
+});
+
+// Close dropdown on Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const menu = document.getElementById('userDropdownMenu');
+        if (menu && menu.classList.contains('show')) {
+            menu.classList.remove('show');
+            const btn = document.getElementById('mobileUserBtn');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+    }
+});
+
 async function syncGlobalAuthState() {
     try {
         const res = await fetch(`${API_BASE}auth/check_session.php`);
@@ -541,19 +696,70 @@ async function syncGlobalAuthState() {
         if (json.success && json.data.authenticated) {
             const user = json.data.user;
             const portalUrl = user.role === 'admin' ? `${rootPrefix}admin/dashboard.html` : `${rootPrefix}student/dashboard.html`;
+            const firstName = escapeHTML(user.full_name.split(' ')[0]);
 
             authButtonsContainer.innerHTML = `
-                <a href="${portalUrl}" class="btn btn-secondary btn-sm btn-pill">
-                    <i class="bi bi-person-circle"></i> ${escapeHTML(user.full_name.split(' ')[0])}
-                </a>
-                <button onclick="handleGlobalLogout()" class="btn btn-glass btn-sm" title="Logout">
-                    <i class="bi bi-box-arrow-right"></i>
-                </button>
+                <!-- Desktop: User Pill & Logout Button -->
+                <div class="nav-auth-desktop">
+                    <a href="${portalUrl}" class="btn btn-secondary btn-sm btn-pill">
+                        <i class="bi bi-person-circle"></i> ${firstName}
+                    </a>
+                    <button onclick="handleGlobalLogout()" class="btn btn-glass btn-sm" title="Logout">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile: Single User Account Button with Dropdown -->
+                <div class="user-dropdown-wrapper nav-auth-mobile">
+                    <button type="button" class="user-menu-btn" id="mobileUserBtn" aria-label="User Account" onclick="toggleUserDropdown(event)" title="${escapeHTML(user.full_name)}">
+                        <i class="bi bi-person-check-fill" style="color: var(--primary);"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="userDropdownMenu">
+                        <div class="user-dropdown-header">
+                            <div class="user-dropdown-name">${escapeHTML(user.full_name)}</div>
+                            <div class="user-dropdown-role">${escapeHTML(user.role.toUpperCase())}</div>
+                        </div>
+                        <div class="user-dropdown-divider"></div>
+                        <a href="${portalUrl}" class="user-dropdown-item">
+                            <i class="bi bi-speedometer2"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <button type="button" onclick="handleGlobalLogout()" class="user-dropdown-item logout-item">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
             `;
         } else {
             authButtonsContainer.innerHTML = `
-                <a href="${rootPrefix}login.html" class="btn btn-secondary btn-sm">Login</a>
-                <a href="${rootPrefix}register.html" class="btn btn-primary btn-sm">Register</a>
+                <!-- Desktop: Separate Login and Register Buttons -->
+                <div class="nav-auth-desktop">
+                    <a href="${rootPrefix}login.html" class="btn btn-secondary btn-sm">Login</a>
+                    <a href="${rootPrefix}register.html" class="btn btn-primary btn-sm">Register</a>
+                </div>
+
+                <!-- Mobile: Single User Account Button with Dropdown -->
+                <div class="user-dropdown-wrapper nav-auth-mobile">
+                    <button type="button" class="user-menu-btn" id="mobileUserBtn" aria-label="User Account" onclick="toggleUserDropdown(event)" title="Account">
+                        <i class="bi bi-person-circle"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="userDropdownMenu">
+                        <div class="user-dropdown-header">
+                            <div class="user-dropdown-name">Welcome</div>
+                            <div class="user-dropdown-role">EventHub Account</div>
+                        </div>
+                        <div class="user-dropdown-divider"></div>
+                        <a href="${rootPrefix}login.html" class="user-dropdown-item">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span>Login</span>
+                        </a>
+                        <a href="${rootPrefix}register.html" class="user-dropdown-item highlight">
+                            <i class="bi bi-person-plus-fill"></i>
+                            <span>Register</span>
+                        </a>
+                    </div>
+                </div>
             `;
         }
     } catch (err) {
@@ -684,6 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollProgress();
     initCircularScrollWidget();
     initNavbar();
+    initDashboardSidebar();
     initModals();
     initScrollReveal();
     initAppleScrollDriven();
@@ -695,4 +902,3 @@ document.addEventListener('DOMContentLoaded', () => {
     syncGlobalAuthState();
 });
 
- 

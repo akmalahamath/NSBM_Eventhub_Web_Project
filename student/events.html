@@ -3,28 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Discover Campus Events — NSBM Student Hub</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/animations.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/style.css?v=1.0">
+    <link rel="stylesheet" href="../css/animations.css?v=1.0">
+    <link rel="stylesheet" href="../css/responsive.css?v=1.0">
 </head>
 <body>
 
     <!-- Header -->
     <header class="site-header">
         <div class="container-fluid">
-            <nav class="navbar" style="height: 70px;">
-                <a href="../index.html" class="navbar-brand">
-                    <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
-                    <div class="brand-text" style="font-size: 1.2rem;">NSBM <span>StudentHub</span></div>
-                </a>
+            <nav class="navbar">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <button class="sidebar-toggle-btn" aria-label="Toggle Navigation Menu" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <a href="../index.html" class="navbar-brand">
+                        <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                        <div class="brand-text">NSBM <span>StudentHub</span></div>
+                    </a>
+                </div>
 
                 <div class="nav-actions">
                     <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
                         <i class="bi bi-sun-fill"></i>
                     </button>
-                    <a href="../index.html" class="btn btn-glass btn-sm" title="Go to Public Website Home"><i class="bi bi-house-door"></i> Go to Home</a>
-                    <a href="my-events.html" class="btn btn-secondary btn-sm"><i class="bi bi-ticket-perforated"></i> My Events</a>
+                    <a href="../index.html" class="btn btn-glass btn-sm nav-extra-btn" title="Go to Public Website Home"><i class="bi bi-house-door"></i> Go to Home</a>
+                    <a href="my-events.html" class="btn btn-secondary btn-sm nav-extra-btn"><i class="bi bi-ticket-perforated"></i> My Events</a>
                     <button onclick="handleGlobalLogout()" class="btn btn-glass btn-sm" title="Sign Out">
                         <i class="bi bi-box-arrow-right"></i> Logout
                     </button>
@@ -32,6 +42,7 @@
             </nav>
         </div>
     </header>
+    <div class="sidebar-backdrop"></div>
 
     <div class="dashboard-layout">
         <!-- Sidebar Navigation -->
@@ -44,6 +55,9 @@
                     <div class="sidebar-user-name user-name-display">Loading...</div>
                     <div class="sidebar-user-role user-studentid-display">Student</div>
                 </div>
+                <button class="sidebar-close-btn" aria-label="Close menu" type="button">
+                    <i class="bi bi-x-lg"></i>
+                </button>
             </div>
 
             <ul class="sidebar-nav">
@@ -52,7 +66,7 @@
                 <li><a href="my-events.html" class="sidebar-link"><i class="bi bi-ticket-perforated"></i> My Events</a></li>
                 <li><a href="schedule.html" class="sidebar-link"><i class="bi bi-calendar-range"></i> My Schedule</a></li>
                 <li><a href="profile.html" class="sidebar-link"><i class="bi bi-person-gear"></i> My Profile</a></li>
-                <li style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);"><a href="../index.html" class="sidebar-link"><i class="bi bi-house"></i> Public Home</a></li>
+                <li class="sidebar-divider-link"><a href="../index.html" class="sidebar-link"><i class="bi bi-house"></i> Public Home</a></li>
             </ul>
         </aside>
 
@@ -129,11 +143,11 @@
     </div>
 
     <!-- Scripts -->
-    <script src="../js/main.js"></script>
-    <script src="../js/auth.js"></script>
-    <script src="../js/events.js"></script>
-    <script src="../js/registration.js"></script>
-    <script src="../js/qrcode.min.js"></script>
+    <script src="../js/main.js?v=1.0"></script>
+    <script src="../js/auth.js?v=1.0"></script>
+    <script src="../js/events.js?v=1.0"></script>
+    <script src="../js/registration.js?v=1.0"></script>
+    <script src="../js/qrcode.min.js?v=1.0"></script>
     <script>
         async function initStudentEventsDirectory() {
             const container = document.getElementById('studentEventsDirectoryGrid');

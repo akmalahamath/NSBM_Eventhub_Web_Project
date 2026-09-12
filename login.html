@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Sign In — NSBM Event Hub</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/style.css?v=1.0">
+    <link rel="stylesheet" href="css/animations.css?v=1.0">
+    <link rel="stylesheet" href="css/responsive.css?v=1.0">
 </head>
 <body style="display: flex; flex-direction: column; justify-content: space-between; min-height: 100vh;">
 
@@ -19,18 +22,17 @@
                     <div class="brand-text">NSBM <span>EventHub</span></div>
                 </a>
 
-                <div class="nav-actions">
-                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
-                        <i class="bi bi-sun-fill"></i>
-                    </button>
-                    <a href="index.html" class="btn btn-glass btn-sm"><i class="bi bi-arrow-left"></i> Back to Home</a>
-                    <a href="register.html" class="btn btn-secondary btn-sm">Create Account</a>
-                </div>
+                    <div class="nav-actions">
+                        <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                            <i class="bi bi-sun-fill"></i>
+                        </button>
+                        <a href="register.html" class="btn btn-secondary btn-sm"><i class="bi bi-person-plus-fill"></i> <span>Create Account</span></a>
+                    </div>
             </nav>
         </div>
     </header>
 
-    <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem;">
+    <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem;">
         <div class="glass-panel animate-fade-up" style="max-width: 440px; width: 100%; padding: 2.5rem; position: relative;">
             
             <!-- Back Option Link -->
@@ -90,8 +92,8 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/main.js"></script>
-    <script src="js/auth.js"></script>
+    <script src="js/main.js?v=1.0"></script>
+    <script src="js/auth.js?v=1.0"></script>
     <script>
         // If already logged in, redirect to the right dashboard
         document.addEventListener('DOMContentLoaded', async () => {

@@ -1,3 +1,7 @@
+/**
+ * NSBM Event Hub - Admin Command Center & Management JavaScript
+ * Real MySQL Analytics, Chart.js Visualizations, CRUD Operations, and CSV Export
+ */
 
 // ==========================================================================
 // ADMIN DASHBOARD ANALYTICS & CHARTS
@@ -41,7 +45,7 @@ async function initAdminDashboard() {
             if (data.recent_registrations && data.recent_registrations.length > 0) {
                 recentRegTable.innerHTML = data.recent_registrations.map(r => `
                     <tr>
-                        <td><strong class="text-white">${escapeHTML(r.student_name)}</strong><br><small class="text-muted">${escapeHTML(r.student_id || 'N/A')}</small></td>
+                        <td><strong>${escapeHTML(r.student_name)}</strong><br><small class="text-muted">${escapeHTML(r.student_id || 'N/A')}</small></td>
                         <td>${escapeHTML(r.event_title)}</td>
                         <td><span class="font-mono text-primary">${escapeHTML(r.ticket_code)}</span></td>
                         <td>${formatDate(r.registration_date)}</td>
@@ -193,7 +197,7 @@ async function initAdminEvents() {
 
                     return `
                         <tr>
-                            <td><strong class="text-white">${safeTitle}</strong><br><small class="text-muted"><i class="bi bi-geo-alt"></i> ${escapeHTML(event.venue)}</small></td>
+                            <td><strong>${safeTitle}</strong><br><small class="text-muted"><i class="bi bi-geo-alt"></i> ${escapeHTML(event.venue)}</small></td>
                             <td><span class="badge" style="background:rgba(27,67,50,0.6); color:var(--primary); border:1px solid var(--border-glass-gold); padding:0.25rem 0.6rem; border-radius:9999px; font-size:0.75rem;">${escapeHTML(event.category_name || 'General')}</span></td>
                             <td>${formatDate(event.event_date)}<br><small class="text-muted">${formatTime(event.start_time)}</small></td>
                             <td>
@@ -351,7 +355,7 @@ async function initAdminParticipants() {
                         <tr>
                             <td>${idx + 1}</td>
                             <td><strong class="font-mono text-primary">${escapeHTML(p.student_id || 'N/A')}</strong></td>
-                            <td><strong class="text-white">${escapeHTML(p.student_name || 'N/A')}</strong></td>
+                            <td><strong>${escapeHTML(p.student_name || 'N/A')}</strong></td>
                             <td>${escapeHTML(p.student_email || '')}<br><small class="text-muted">${escapeHTML(p.student_phone || '')}</small></td>
                             <td><span class="font-mono text-primary" style="font-size:0.85rem; font-weight:700;">${escapeHTML(p.ticket_code || '')}</span></td>
                             <td>${formatDate(p.registration_date)}</td>
