@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Participants &amp; CSV Export — NSBM Admin Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container-fluid">
+            <nav class="navbar" style="height: 70px;">
+                <a href="../index.html" class="navbar-brand">
+                    <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text" style="font-size: 1.2rem;">NSBM <span>AdminHub</span></div>
+                </a>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <a href="../index.html" class="btn btn-glass btn-sm" title="Go to Public Website Home"><i class="bi bi-house-door"></i> Go to Home</a>
+                    <button onclick="handleGlobalLogout()" class="btn btn-glass btn-sm" title="Sign Out">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-user-avatar">
+                    <i class="bi bi-shield-shaded"></i>
+                </div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name user-name-display">Administrator</div>
+                    <div class="sidebar-user-role">SYSTEM ADMIN</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li><a href="dashboard.html" class="sidebar-link"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                <li><a href="events.html" class="sidebar-link"><i class="bi bi-calendar-event"></i> Manage Events</a></li>
+                <li><a href="add-event.html" class="sidebar-link"><i class="bi bi-calendar-plus"></i> Add Event</a></li>
+                <li><a href="categories.html" class="sidebar-link"><i class="bi bi-tags"></i> Categories</a></li>
+                <li><a href="registrations.html" class="sidebar-link"><i class="bi bi-card-checklist"></i> Registrations</a></li>
+                <li><a href="participants.html" class="sidebar-link active"><i class="bi bi-people"></i> Participants &amp; CSV</a></li>
+                <li><a href="announcements.html" class="sidebar-link"><i class="bi bi-megaphone"></i> Announcements</a></li>
+                <li style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);"><a href="../index.html" class="sidebar-link"><i class="bi bi-house-door"></i> Go to Home</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <span class="section-tag"><i class="bi bi-people-fill"></i> Attendance &amp; Rosters</span>
+                    <h1 class="section-title">Event Participants</h1>
+                    <p class="section-subtitle">Select any university event to view verified attendees and download full roster spreadsheets.</p>
+                </div>
+
+                <button id="exportParticipantsCsvBtn" class="btn btn-success btn-pill" disabled>
+                    <i class="bi bi-file-earmark-arrow-down"></i> Export Roster to CSV
+                </button>
+            </div>
+
+            <!-- Event Selector & Search Controls -->
+            <div class="glass-panel" style="margin-bottom: 1.75rem; padding: 1.5rem;">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label class="form-label" for="participantEventSelector" style="font-weight: 700; font-size: 0.95rem;">
+                        <i class="bi bi-calendar-event text-primary"></i> Select University Event
+                    </label>
+                    <select id="participantEventSelector" class="form-select form-control-lg" style="font-weight: 600;">
+                        <option value="0">Loading events...</option>
+                    </select>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;" class="grid-filters">
+                    <div>
+                        <input type="text" id="participantSearchInput" class="form-control" placeholder="Search by student name, ID, email, or ticket pass...">
+                    </div>
+                    <div>
+                        <select id="participantStatusFilter" class="form-select">
+                            <option value="all">All Attendee Statuses</option>
+                            <option value="confirmed" selected>Confirmed</option>
+                            <option value="attended">Attended</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Summary Banner -->
+            <div id="participantEventHeaderInfo"></div>
+
+            <!-- Participant Table -->
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Student ID</th>
+                            <th>Full Name</th>
+                            <th>Email &amp; Contact</th>
+                            <th>Ticket Pass</th>
+                            <th>Registered On</th>
+                            <th>Attendance Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="participantTableBody">
+                        <!-- Populated dynamically via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initAdminParticipants();
+        });
+    </script>
+</body>
+</html>

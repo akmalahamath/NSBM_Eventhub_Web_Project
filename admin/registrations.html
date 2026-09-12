@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Registrations — NSBM Admin Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container-fluid">
+            <nav class="navbar" style="height: 70px;">
+                <a href="../index.html" class="navbar-brand">
+                    <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text" style="font-size: 1.2rem;">NSBM <span>AdminHub</span></div>
+                </a>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <a href="../index.html" class="btn btn-glass btn-sm" title="Go to Public Website Home"><i class="bi bi-house-door"></i> Go to Home</a>
+                    <a href="participants.html" class="btn btn-secondary btn-sm"><i class="bi bi-file-earmark-spreadsheet"></i> Export Rosters</a>
+                    <button onclick="handleGlobalLogout()" class="btn btn-glass btn-sm" title="Sign Out">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-user-avatar">
+                    <i class="bi bi-shield-shaded"></i>
+                </div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name user-name-display">Administrator</div>
+                    <div class="sidebar-user-role">SYSTEM ADMIN</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li><a href="dashboard.html" class="sidebar-link"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                <li><a href="events.html" class="sidebar-link"><i class="bi bi-calendar-event"></i> Manage Events</a></li>
+                <li><a href="add-event.html" class="sidebar-link"><i class="bi bi-calendar-plus"></i> Add Event</a></li>
+                <li><a href="categories.html" class="sidebar-link"><i class="bi bi-tags"></i> Categories</a></li>
+                <li><a href="registrations.html" class="sidebar-link active"><i class="bi bi-card-checklist"></i> Registrations</a></li>
+                <li><a href="participants.html" class="sidebar-link"><i class="bi bi-people"></i> Participants &amp; CSV</a></li>
+                <li><a href="announcements.html" class="sidebar-link"><i class="bi bi-megaphone"></i> Announcements</a></li>
+                <li style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);"><a href="../index.html" class="sidebar-link"><i class="bi bi-house-door"></i> Go to Home</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-content">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <span class="section-tag"><i class="bi bi-card-checklist"></i> Student Records</span>
+                    <h1 class="section-title">All Event Registrations</h1>
+                    <p class="section-subtitle">Search, inspect digital ticket passes, and verify student attendance records.</p>
+                </div>
+
+                <button id="exportAllRegsCsvBtn" class="btn btn-success btn-pill">
+                    <i class="bi bi-file-earmark-arrow-down"></i> Export Registrations CSV
+                </button>
+            </div>
+
+            <!-- Search & Filter Controls -->
+            <div class="glass-panel" style="margin-bottom: 1.75rem; padding: 1.25rem;">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem;" class="grid-filters">
+                    <div>
+                        <input type="text" id="allRegsSearch" class="form-control" placeholder="Search by student name, ID, email, ticket code, or event title...">
+                    </div>
+                    <div>
+                        <select id="allRegsStatusFilter" class="form-select">
+                            <option value="all">All Statuses</option>
+                            <option value="confirmed" selected>Confirmed</option>
+                            <option value="attended">Attended</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Registrations Table -->
+            <div class="table-responsive">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Student</th>
+                            <th>Event</th>
+                            <th>Ticket Pass</th>
+                            <th>Registration Date</th>
+                            <th>Status Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="allRegistrationsTableBody">
+                        <!-- Populated dynamically via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const admin = await enforceAuthGuard('admin');
+            if (!admin) return;
+
+            const tbody = document.getElementById('allRegistrationsTableBody');
+            const searchInput = document.getElementById('allRegsSearch');
+            const statusSelect = document.getElementById('allRegsStatusFilter');
+            const exportBtn = document.getElementById('exportAllRegsCsvBtn');
+
+            let currentRegistrations = [];
+
+            async function loadRegistrations() {
+                tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4"><span class="spinner"></span> Loading registrations...</td></tr>`;
+
+                const search = searchInput.value.trim();
+                const status = statusSelect.value;
+
+                const params = new URLSearchParams({
+                    view: 'admin',
+                    all: 1,
+                    search,
+                    status
+                });
+
+                try {
+                    const res = await fetch(`${API_BASE}registrations/read.php?${params.toString()}`);
+                    const json = await res.json();
+
+                    if (json.success && json.data.registrations && json.data.registrations.length > 0) {
+                        currentRegistrations = json.data.registrations;
+                        if (exportBtn) exportBtn.disabled = false;
+
+                        tbody.innerHTML = currentRegistrations.map(r => `
+                            <tr>
+                                <td>
+                                    <strong class="text-white">${escapeHTML(r.student_name)}</strong><br>
+                                    <small class="font-mono text-primary">${escapeHTML(r.student_id || 'N/A')}</small> &bull; 
+                                    <small class="text-muted">${escapeHTML(r.student_email)}</small>
+                                </td>
+                                <td>
+                                    <strong>${escapeHTML(r.event_title)}</strong><br>
+                                    <small class="text-muted"><i class="bi bi-calendar"></i> ${formatDate(r.event_date)} &bull; ${escapeHTML(r.venue)}</small>
+                                </td>
+                                <td><span class="font-mono" style="color: var(--primary); font-weight: 700; font-size: 0.85rem;">${escapeHTML(r.ticket_code)}</span></td>
+                                <td>${formatDate(r.registration_date)}</td>
+                                <td>
+                                    <select onchange="updateRegStatus(${r.registration_id}, this.value)" class="form-select form-select-sm" style="padding: 0.35rem 1.8rem 0.35rem 0.6rem; font-size: 0.82rem; width: 130px;">
+                                        <option value="confirmed" ${r.registration_status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+                                        <option value="attended" ${r.registration_status === 'attended' ? 'selected' : ''}>Attended</option>
+                                        <option value="cancelled" ${r.registration_status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        `).join('');
+                    } else {
+                        currentRegistrations = [];
+                        if (exportBtn) exportBtn.disabled = true;
+                        tbody.innerHTML = `<tr><td colspan="5" class="text-center text-secondary py-4"><i class="bi bi-card-checklist" style="font-size:1.5rem; display:block; margin-bottom:0.5rem;"></i> No registrations match your search filter.</td></tr>`;
+                    }
+                } catch (e) {
+                    console.error('All registrations load error:', e);
+                    tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger py-4">Failed to load registration data.</td></tr>`;
+                }
+            }
+
+            let debounce;
+            searchInput.addEventListener('input', () => {
+                clearTimeout(debounce);
+                debounce = setTimeout(loadRegistrations, 300);
+            });
+            statusSelect.addEventListener('change', loadRegistrations);
+
+            if (exportBtn) {
+                exportBtn.addEventListener('click', () => {
+                    if (typeof exportParticipantsToCSV === 'function') {
+                        exportParticipantsToCSV(currentRegistrations, 'All_Registrations');
+                    }
+                });
+            }
+
+            loadRegistrations();
+        });
+
+        async function updateRegStatus(regId, status) {
+            try {
+                const res = await fetch(`${API_BASE}registrations/update_status.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ registration_id: regId, status })
+                });
+                const json = await res.json();
+                if (json.success) {
+                    showToast('success', 'Status Updated', json.message);
+                } else {
+                    showToast('error', 'Update Failed', json.message);
+                }
+            } catch (err) {
+                console.error('Status update error:', err);
+            }
+        }
+    </script>
+</body>
+</html>
