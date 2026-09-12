@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal Login — NSBM Event Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body style="display: flex; flex-direction: column; justify-content: space-between; min-height: 100vh;">
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="../index.html" class="navbar-brand">
+                    <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text">NSBM <span>AdminHub</span></div>
+                </a>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <a href="../index.html" class="btn btn-glass btn-sm"><i class="bi bi-arrow-left"></i> Back to Home</a>
+                    <a href="../login.html" class="btn btn-secondary btn-sm"><i class="bi bi-person"></i> Student Portal</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem;">
+        <div class="glass-panel animate-fade-up" style="max-width: 440px; width: 100%; padding: 2.5rem; border: 1px solid var(--border-glass-gold); box-shadow: var(--shadow-glow-emerald);">
+            
+            <!-- Back Option Links -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                <a href="../index.html" style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--text-secondary); text-decoration: none;">
+                    <i class="bi bi-arrow-left"></i> Back to Home
+                </a>
+                <a href="../login.html" style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--text-secondary); text-decoration: none;">
+                    <i class="bi bi-person"></i> Student Login
+                </a>
+            </div>
+
+            <div class="text-center" style="margin-bottom: 2rem;">
+                <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                <h2 style="font-size: 1.75rem; margin-bottom: 0.35rem;">Staff &amp; Admin Sign In</h2>
+                <p class="text-secondary" style="font-size: 0.92rem;">Authorized university administrators only.</p>
+            </div>
+
+            <!-- Demo Access Removed -->
+
+            <!-- Login Form -->
+            <form id="adminLoginForm" onsubmit="handleLoginFormSubmit(event, 'admin')">
+                <div class="form-group">
+                    <label class="form-label" for="loginEmail">Admin Email</label>
+                    <input type="email" id="loginEmail" name="email" class="form-control" placeholder="admin@nsbmeventhub.com" required autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="loginPassword">Master Password</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="loginPassword" name="password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+                        <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('loginPassword', this)">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; margin-top: 0.5rem;">
+                    Access Admin Center <i class="bi bi-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 1.5rem; border-top: 1px solid var(--border-glass); font-size: 0.85rem; color: var(--text-muted);">
+        &copy; 2026 NSBM Event Hub. Administrative Command Center.
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>
