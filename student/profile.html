@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile — NSBM Event Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container-fluid">
+            <nav class="navbar" style="height: 70px;">
+                <a href="../index.html" class="navbar-brand">
+                    <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text" style="font-size: 1.2rem;">NSBM <span>StudentHub</span></div>
+                </a>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <a href="../index.html" class="btn btn-glass btn-sm" title="Go to Public Website Home"><i class="bi bi-house-door"></i> Go to Home</a>
+                    <a href="events.html" class="btn btn-secondary btn-sm"><i class="bi bi-compass"></i> Discover Events</a>
+                    <button onclick="handleGlobalLogout()" class="btn btn-glass btn-sm" title="Sign Out">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-user-avatar">
+                    <i class="bi bi-person"></i>
+                </div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name user-name-display">Loading...</div>
+                    <div class="sidebar-user-role user-studentid-display">Student</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li><a href="dashboard.html" class="sidebar-link"><i class="bi bi-grid-1x2"></i> Dashboard</a></li>
+                <li><a href="events.html" class="sidebar-link"><i class="bi bi-compass"></i> Discover Events</a></li>
+                <li><a href="my-events.html" class="sidebar-link"><i class="bi bi-ticket-perforated"></i> My Events</a></li>
+                <li><a href="schedule.html" class="sidebar-link"><i class="bi bi-calendar-range"></i> My Schedule</a></li>
+                <li><a href="profile.html" class="sidebar-link active"><i class="bi bi-person-gear"></i> My Profile</a></li>
+                <li style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);"><a href="../index.html" class="sidebar-link"><i class="bi bi-house"></i> Public Home</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-content">
+            <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                <span class="section-tag"><i class="bi bi-person-badge"></i> Account Settings</span>
+                <h1 class="section-title">Student Profile</h1>
+                <p class="section-subtitle">Manage your personal information, contact numbers, and security credentials.</p>
+            </div>
+
+            <div class="grid-2" style="max-width: 1000px;">
+                <!-- Profile Information Card -->
+                <div class="glass-card">
+                    <h3 style="margin-bottom: 1.5rem;"><i class="bi bi-person text-primary"></i> Personal Details</h3>
+
+                    <form id="profileDetailsForm" onsubmit="handleProfileUpdateSubmit(event)">
+                        <div class="form-group">
+                            <label class="form-label" for="profileFullName">Full Name</label>
+                            <input type="text" id="profileFullName" name="full_name" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="profileStudentId">Student ID</label>
+                            <input type="text" id="profileStudentId" name="student_id" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="profileEmail">Email Address (Read-only)</label>
+                            <input type="email" id="profileEmail" name="email" class="form-control" disabled style="opacity: 0.7;">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="profilePhone">Phone Number</label>
+                            <input type="tel" id="profilePhone" name="phone" class="form-control" placeholder="+94 77 123 4567">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            Save Changes <i class="bi bi-check2"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Password Change Card -->
+                <div class="glass-card">
+                    <h3 style="margin-bottom: 1.5rem;"><i class="bi bi-shield-lock text-success"></i> Security &amp; Password</h3>
+
+                    <form id="changePasswordForm" onsubmit="handleChangePasswordSubmit(event)">
+                        <div class="form-group">
+                            <label class="form-label" for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword" name="current_password" class="form-control" required placeholder="••••••••">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" name="new_password" class="form-control" required placeholder="Min. 6 characters">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="confirmNewPassword">Confirm New Password</label>
+                            <input type="password" id="confirmNewPassword" name="confirm_password" class="form-control" required placeholder="Repeat new password">
+                        </div>
+
+                        <button type="submit" class="btn btn-secondary" style="width: 100%;">
+                            Update Password <i class="bi bi-key"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = await enforceAuthGuard('student');
+            if (!user) return;
+
+            document.getElementById('profileFullName').value = user.full_name || '';
+            document.getElementById('profileStudentId').value = user.student_id || '';
+            document.getElementById('profileEmail').value = user.email || '';
+            document.getElementById('profilePhone').value = user.phone || '';
+        });
+
+        async function handleProfileUpdateSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const fullName = form.full_name.value.trim();
+            const studentId = form.student_id.value.trim();
+            const phone = form.phone.value.trim();
+
+            try {
+                const res = await fetch(`${API_BASE}profile/update.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'profile', full_name: fullName, student_id: studentId, phone })
+                });
+                const json = await res.json();
+                if (json.success) {
+                    showToast('success', 'Profile Updated', json.message);
+                    populateUserUI(json.data.user);
+                } else {
+                    showToast('error', 'Update Error', json.message);
+                }
+            } catch (err) {
+                console.error('Profile update error:', err);
+            }
+        }
+
+        async function handleChangePasswordSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const currentPassword = form.current_password.value.trim();
+            const newPassword = form.new_password.value.trim();
+            const confirmPassword = form.confirm_password.value.trim();
+
+            if (newPassword !== confirmPassword) {
+                showToast('error', 'Password Mismatch', 'New passwords do not match.');
+                return;
+            }
+
+            try {
+                const res = await fetch(`${API_BASE}profile/update.php`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'password', current_password: currentPassword, new_password: newPassword, confirm_password: confirmPassword })
+                });
+                const json = await res.json();
+                if (json.success) {
+                    showToast('success', 'Password Updated', json.message);
+                    form.reset();
+                } else {
+                    showToast('error', 'Password Error', json.message);
+                }
+            } catch (err) {
+                console.error('Password change error:', err);
+            }
+        }
+    </script>
+</body>
+</html>
