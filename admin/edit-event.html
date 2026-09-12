@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Event — NSBM Admin Hub</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container-fluid">
+            <nav class="navbar" style="height: 70px;">
+                <a href="../index.html" class="navbar-brand">
+                    <img src="../images/NSBM-LOGO.png" alt="NSBM Green University Town" class="navbar-logo">
+                    <div class="brand-text" style="font-size: 1.2rem;">NSBM <span>AdminHub</span></div>
+                </a>
+
+                <div class="nav-actions">
+                    <button class="theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill"></i>
+                    </button>
+                    <a href="../index.html" class="btn btn-glass btn-sm" title="Go to Public Website Home"><i class="bi bi-house-door"></i> Go to Home</a>
+                    <a href="events.html" class="btn btn-secondary btn-sm"><i class="bi bi-arrow-left"></i> Back to Events</a>
+                    <button onclick="handleGlobalLogout()" class="btn btn-glass btn-sm" title="Sign Out">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-user">
+                <div class="sidebar-user-avatar">
+                    <i class="bi bi-shield-shaded"></i>
+                </div>
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name user-name-display">Administrator</div>
+                    <div class="sidebar-user-role">SYSTEM ADMIN</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-nav">
+                <li><a href="dashboard.html" class="sidebar-link"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                <li><a href="events.html" class="sidebar-link active"><i class="bi bi-calendar-event"></i> Manage Events</a></li>
+                <li><a href="add-event.html" class="sidebar-link"><i class="bi bi-calendar-plus"></i> Add Event</a></li>
+                <li><a href="categories.html" class="sidebar-link"><i class="bi bi-tags"></i> Categories</a></li>
+                <li><a href="registrations.html" class="sidebar-link"><i class="bi bi-card-checklist"></i> Registrations</a></li>
+                <li><a href="participants.html" class="sidebar-link"><i class="bi bi-people"></i> Participants &amp; CSV</a></li>
+                <li><a href="announcements.html" class="sidebar-link"><i class="bi bi-megaphone"></i> Announcements</a></li>
+                <li style="margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-glass);"><a href="../index.html" class="sidebar-link"><i class="bi bi-house-door"></i> Go to Home</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-content">
+            <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+                <span class="section-tag"><i class="bi bi-pencil-square"></i> Event Editor</span>
+                <h1 class="section-title">Edit University Event</h1>
+                <p class="section-subtitle">Modify event schedule, capacity, venue, or status.</p>
+            </div>
+
+            <div class="glass-panel" style="max-width: 900px; padding: 2.5rem;">
+                <form id="editEventForm" onsubmit="handleEditEventSubmit(event)" enctype="multipart/form-data">
+                    <input type="hidden" id="editEventId" name="id">
+
+                    <div class="form-group">
+                        <label class="form-label" for="editEventTitle">Event Title *</label>
+                        <input type="text" id="editEventTitle" name="title" class="form-control" required>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label" for="editEventCategory">Category *</label>
+                            <select id="editEventCategory" name="category_id" class="form-select" required>
+                                <option value="">Select Category...</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="editEventStatus">Event Status</label>
+                            <select id="editEventStatus" name="status" class="form-select">
+                                <option value="upcoming">Upcoming</option>
+                                <option value="ongoing">Ongoing</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="editEventDesc">Event Description *</label>
+                        <textarea id="editEventDesc" name="description" class="form-control" rows="4" required></textarea>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;" class="grid-3">
+                        <div class="form-group">
+                            <label class="form-label" for="editEventDate">Event Date *</label>
+                            <input type="date" id="editEventDate" name="event_date" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="editEventStartTime">Start Time *</label>
+                            <input type="time" id="editEventStartTime" name="start_time" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="editEventEndTime">End Time *</label>
+                            <input type="time" id="editEventEndTime" name="end_time" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label" for="editEventVenue">Venue / Location *</label>
+                            <input type="text" id="editEventVenue" name="venue" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="editEventOrganizer">Organizer / Department *</label>
+                            <input type="text" id="editEventOrganizer" name="organizer" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="grid-2">
+                        <div class="form-group">
+                            <label class="form-label" for="editEventCapacity">Maximum Seat Capacity *</label>
+                            <input type="number" id="editEventCapacity" name="max_participants" class="form-control" min="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="editEventDeadline">Registration Deadline</label>
+                            <input type="datetime-local" id="editEventDeadline" name="registration_deadline" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Event Banner Image</label>
+                        <!-- Current image preview -->
+                        <div id="currentImagePreview" style="margin-bottom: 0.75rem; display: none;">
+                            <p style="font-size:0.82rem; color: var(--text-secondary); margin-bottom: 0.4rem;">Current Banner:</p>
+                            <img id="currentImageThumb" src="" alt="Current banner"
+                                 style="height: 120px; width: auto; max-width: 100%; border-radius: 8px; border: 1px solid var(--border-glass); object-fit: cover;">
+                        </div>
+                        <!-- Hidden field keeps the existing path if no new file chosen -->
+                        <input type="hidden" id="editEventImageCurrent" name="image_current">
+                        <!-- File input for new upload -->
+                        <input type="file" id="editEventImageFile" name="image_file" class="form-control" accept="image/*"
+                               onchange="previewNewImage(this)">
+                        <!-- New image preview -->
+                        <div id="newImagePreview" style="margin-top: 0.6rem; display: none;">
+                            <p style="font-size:0.82rem; color: var(--text-secondary); margin-bottom: 0.4rem;">New Image Preview:</p>
+                            <img id="newImageThumb" src="" alt="New banner"
+                                 style="height: 120px; width: auto; max-width: 100%; border-radius: 8px; border: 1px solid var(--border-glass); object-fit: cover;">
+                        </div>
+                        <small class="text-muted">Leave empty to keep the current banner image.</small>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                        <a href="events.html" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-check2"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const admin = await enforceAuthGuard('admin');
+            if (!admin) return;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('id');
+
+            if (!eventId) {
+                window.location.href = 'events.html';
+                return;
+            }
+
+            // 1. Load Categories
+            try {
+                const catRes = await fetch(`${API_BASE}categories/read.php`);
+                const catJson = await catRes.json();
+                if (catJson.success && catJson.data.categories) {
+                    const select = document.getElementById('editEventCategory');
+                    catJson.data.categories.forEach(c => {
+                        const opt = document.createElement('option');
+                        opt.value = c.id;
+                        opt.textContent = c.name;
+                        select.appendChild(opt);
+                    });
+                }
+            } catch (e) {
+                console.error('Categories load error:', e);
+            }
+
+            // 2. Load Event Data
+            try {
+                const res = await fetch(`${API_BASE}events/read.php?id=${eventId}`);
+                const json = await res.json();
+
+                if (json.success && json.data) {
+                    const ev = json.data;
+                    document.getElementById('editEventId').value = ev.id;
+                    document.getElementById('editEventTitle').value = ev.title;
+                    document.getElementById('editEventCategory').value = ev.category_id || '';
+                    document.getElementById('editEventStatus').value = ev.status;
+                    document.getElementById('editEventDesc').value = ev.description;
+                    document.getElementById('editEventDate').value = ev.event_date;
+                    document.getElementById('editEventStartTime').value = ev.start_time;
+                    document.getElementById('editEventEndTime').value = ev.end_time;
+                    document.getElementById('editEventVenue').value = ev.venue;
+                    document.getElementById('editEventOrganizer').value = ev.organizer;
+                    document.getElementById('editEventCapacity').value = ev.max_participants;
+
+                    // Store current image path and show preview
+                    if (ev.image) {
+                        document.getElementById('editEventImageCurrent').value = ev.image;
+                        const isAbs = ev.image.startsWith('http://') || ev.image.startsWith('https://');
+                        const resolvedSrc = isAbs ? ev.image : '../' + ev.image;
+                        const thumb = document.getElementById('currentImageThumb');
+                        thumb.src = resolvedSrc;
+                        thumb.onerror = () => { document.getElementById('currentImagePreview').style.display = 'none'; };
+                        document.getElementById('currentImagePreview').style.display = 'block';
+                    }
+
+                    if (ev.registration_deadline) {
+                        const dl = ev.registration_deadline.replace(' ', 'T').slice(0, 16);
+                        document.getElementById('editEventDeadline').value = dl;
+                    }
+                } else {
+                    showToast('error', 'Event Not Found', 'Could not locate event record.');
+                }
+            } catch (err) {
+                console.error('Load event for edit error:', err);
+            }
+        });
+
+        function previewNewImage(input) {
+            const previewBox = document.getElementById('newImagePreview');
+            const thumb = document.getElementById('newImageThumb');
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    thumb.src = e.target.result;
+                    previewBox.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                previewBox.style.display = 'none';
+            }
+        }
+
+        async function handleEditEventSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            const formData = new FormData(form);
+            // Append the hidden event id explicitly
+            formData.set('id', document.getElementById('editEventId').value);
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span> Saving...';
+
+            try {
+                const res = await fetch(`${API_BASE}events/update.php`, {
+                    method: 'POST',
+                    body: formData
+                });
+                const json = await res.json();
+
+                if (json.success) {
+                    showToast('success', 'Changes Saved', json.message);
+                    setTimeout(() => {
+                        window.location.href = 'events.html';
+                    }, 1000);
+                } else {
+                    showToast('error', 'Update Failed', json.message);
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="bi bi-check2"></i> Save Changes';
+                }
+            } catch (err) {
+                console.error('Update event error:', err);
+                showToast('error', 'Network Error', 'Could not reach server.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="bi bi-check2"></i> Save Changes';
+            }
+        }
+    </script>
+</body>
+</html>
