@@ -265,5 +265,5 @@ http://localhost/nsbm-event-hub/
 ---
 
 ## 👨‍🎓 Project Credits
-**NSBM Green University — Faculty of Computing**  
+AR. Akmal Ahamath 
 *Full-Stack University Final-Year Project 2026*
